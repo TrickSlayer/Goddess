@@ -7,15 +7,16 @@ public class CharacterController2D : MonoBehaviour
 	[Range(0, .3f)] [SerializeField] private float MovementSmoothing = .05f;	// How much to smooth out the movement
     [SerializeField] private bool AirControl = false;                           // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask WhatIsGround;							// A mask determining what is ground to the character
-	[SerializeField] private Transform GroundCheck;								// A position marking where to check if the player is grounded.
-	[SerializeField] private Transform CeilingCheck;							// A position marking where to check for ceilings
-	[SerializeField] private Collider2D CrouchDisableCollider;				    // A collider that will be disabled when crouching
+	[SerializeField] private Transform GroundCheckPoint;								// A position marking where to check if the player is grounded.
+	[SerializeField] private Transform CeilingCheckPoint;							// A position marking where to check for ceilings
+	/*[SerializeField] private Collider2D CrouchDisableCollider;*/				    // A collider that will be disabled when crouching
 
-	const float GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool Grounded;            // Whether or not the player is grounded.
-	const float CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
+	const float GroundedRadius = .2f;                                           // Radius of the overlap circle to determine if grounded
+    [HideInInspector] public bool Grounded;                                     // Whether or not the player is grounded.
+    [HideInInspector] public bool Ceiling;
+    const float CeilingRadius = 0.6f;                                            // Radius of the overlap circle to determine if the player can stand up
 	private Rigidbody2D Rigidbody2D;
-	private bool facingRight = true;  // For determining which way the player is currently facing.
+	private bool facingRight = true;                                            // For determining which way the player is currently facing.
 	private Vector3 Velocity = Vector3.zero;
     private bool wasCrouching = false;
 
@@ -45,10 +46,10 @@ public class CharacterController2D : MonoBehaviour
 		bool wasGrounded = Grounded;
 		Grounded = false;
 
-		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+		// The player is grounded if a circlecast to the GroundCheckPoint position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, WhatIsGround);
-		for (int i = 0; i < colliders.Length; i++)
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckPoint.position, GroundedRadius, WhatIsGround);
+        for (int i = 0; i < colliders.Length; i++)
 		{
 			if (colliders[i].gameObject != gameObject)
 			{
@@ -57,7 +58,9 @@ public class CharacterController2D : MonoBehaviour
 					OnLandEvent.Invoke();
 			}
 		}
-	}
+
+        Ceiling = Physics2D.OverlapCircle(CeilingCheckPoint.position, CeilingRadius, WhatIsGround);
+    }
 
 
 	public void Move(float move, bool crouch, bool jump)
@@ -69,6 +72,8 @@ public class CharacterController2D : MonoBehaviour
         Rigidbody2D.velocity = Vector3.SmoothDamp(Rigidbody2D.velocity, targetVelocity, ref Velocity, MovementSmoothing);
 
 		RotationFace(move);
+
+        Crouch(crouch);
 
 		Jump(jump);
     }
@@ -111,7 +116,7 @@ public class CharacterController2D : MonoBehaviour
         if (Grounded && jump)
         {
             // Add a vertical force to the player.
-            Grounded = false;
+            Grounded = true;
             Rigidbody2D.AddForce(new Vector2(0f, JumpForce));
         }
     }
@@ -120,15 +125,18 @@ public class CharacterController2D : MonoBehaviour
     #region Crouch
     private void Crouch(bool crouch)
     {
+
         // If crouching, check to see if the character can stand up
         if (!crouch)
         {
             // If the character has a ceiling preventing them from standing up, keep them crouching
-            if (Physics2D.OverlapCircle(CeilingCheck.position, CeilingRadius, WhatIsGround))
+            if (Physics2D.OverlapCircle(CeilingCheckPoint.position, CeilingRadius, WhatIsGround))
             {
                 crouch = true;
             }
         }
+
+        Debug.Log(crouch + " " + wasCrouching + " " + (Grounded || AirControl));
 
         //only control the player if grounded or airControl is turned on
         if (Grounded || AirControl)
@@ -139,22 +147,25 @@ public class CharacterController2D : MonoBehaviour
             {
                 if (!wasCrouching)
                 {
+                    Debug.Log("crouch");
                     wasCrouching = true;
                     OnCrouchEvent.Invoke(true);
                 }
 
                 // Disable one of the colliders when crouching
-                if (CrouchDisableCollider != null)
-                    CrouchDisableCollider.enabled = false;
+/*                if (CrouchDisableCollider != null)
+                    CrouchDisableCollider.enabled = false;*/
             }
             else
             {
                 // Enable the collider when not crouching
-                if (CrouchDisableCollider != null)
-                    CrouchDisableCollider.enabled = true;
+                /*if (CrouchDisableCollider != null)
+                    CrouchDisableCollider.enabled = true;*/
 
                 if (wasCrouching)
                 {
+                    Debug.Log("not crouch");
+
                     wasCrouching = false;
                     OnCrouchEvent.Invoke(false);
                 }
