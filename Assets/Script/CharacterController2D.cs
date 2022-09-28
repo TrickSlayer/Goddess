@@ -136,8 +136,6 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        Debug.Log(crouch + " " + wasCrouching + " " + (Grounded || AirControl));
-
         //only control the player if grounded or airControl is turned on
         if (Grounded || AirControl)
         {
@@ -147,31 +145,23 @@ public class CharacterController2D : MonoBehaviour
             {
                 if (!wasCrouching)
                 {
-                    Debug.Log("crouch");
                     wasCrouching = true;
                     OnCrouchEvent.Invoke(true);
                 }
 
-                // Disable one of the colliders when crouching
-/*                if (CrouchDisableCollider != null)
-                    CrouchDisableCollider.enabled = false;*/
             }
             else
             {
-                // Enable the collider when not crouching
-                /*if (CrouchDisableCollider != null)
-                    CrouchDisableCollider.enabled = true;*/
 
                 if (wasCrouching)
                 {
-                    Debug.Log("not crouch");
-
                     wasCrouching = false;
                     OnCrouchEvent.Invoke(false);
                 }
             }
 
         }
+
     }
     #endregion
 
