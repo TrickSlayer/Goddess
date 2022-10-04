@@ -7,14 +7,14 @@ public class CharacterController2D : MonoBehaviour
 	[Range(0, .3f)] [SerializeField] private float MovementSmoothing = .05f;	// How much to smooth out the movement
     [SerializeField] private bool AirControl = false;                           // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask WhatIsGround;							// A mask determining what is ground to the character
-	[SerializeField] private Transform GroundCheckPoint;								// A position marking where to check if the player is grounded.
-	[SerializeField] private Transform CeilingCheckPoint;							// A position marking where to check for ceilings
-	/*[SerializeField] private Collider2D CrouchDisableCollider;*/				    // A collider that will be disabled when crouching
+	[SerializeField] private Transform GroundCheckPoint;						// A position marking where to check if the player is grounded.
+	[SerializeField] private Transform CeilingCheckPoint;                       // A position marking where to check for ceilings
 
-	const float GroundedRadius = .2f;                                           // Radius of the overlap circle to determine if grounded
+    public float GroundedRadius = .2f;                                          // Radius of the overlap circle to determine if grounded
+    public float CeilingRadius = 0.6f;                                          // Radius of the overlap circle to determine if the player can stand up
     [HideInInspector] public bool Grounded;                                     // Whether or not the player is grounded.
     [HideInInspector] public bool Ceiling;
-    const float CeilingRadius = 0.6f;                                            // Radius of the overlap circle to determine if the player can stand up
+                                       
 	private Rigidbody2D Rigidbody2D;
 	private bool facingRight = true;                                            // For determining which way the player is currently facing.
 	private Vector3 Velocity = Vector3.zero;
