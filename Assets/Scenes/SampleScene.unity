@@ -414,7 +414,7 @@ PrefabInstance:
     - target: {fileID: 2922667606230761298, guid: 0a4e0bcd27be4384db6aa285d9f7eb9f, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1561832683}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a4e0bcd27be4384db6aa285d9f7eb9f, type: 3}
 --- !u!114 &814124257 stripped
@@ -836,6 +836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c2113dd66d1d3f43a68aad1e6f82a4c, type: 3}
+--- !u!60 &1561832683 stripped
+PolygonCollider2D:
+  m_CorrespondingSourceObject: {fileID: 1239449430902641442, guid: 4c2113dd66d1d3f43a68aad1e6f82a4c, type: 3}
+  m_PrefabInstance: {fileID: 1561832682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1823472963
 GameObject:
   m_ObjectHideFlags: 0
