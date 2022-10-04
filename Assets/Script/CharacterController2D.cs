@@ -117,7 +117,8 @@ public class CharacterController2D : MonoBehaviour
         {
             // Add a vertical force to the player.
             Grounded = true;
-            Rigidbody2D.AddForce(new Vector2(0f, JumpForce));
+            Vector2 force = new Vector2(0f, JumpForce);
+            Rigidbody2D.AddForce(force);
         }
     }
     #endregion
@@ -127,7 +128,7 @@ public class CharacterController2D : MonoBehaviour
     {
 
         // If crouching, check to see if the character can stand up
-        if (!crouch)
+        if (!crouch && wasCrouching)
         {
             // If the character has a ceiling preventing them from standing up, keep them crouching
             if (Physics2D.OverlapCircle(CeilingCheckPoint.position, CeilingRadius, WhatIsGround))
