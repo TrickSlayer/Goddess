@@ -6,7 +6,7 @@ public class Startcamera : MonoBehaviour
 {
     // Start is called before the first frame update
     private Transform Player;
-    private float minX = -11.6f, maxX = 2.09f;
+    private float minX = -13.9f, maxX = 5.3f;
     void Start()
     {
         Player = GameObject.FindWithTag("Player").transform;
