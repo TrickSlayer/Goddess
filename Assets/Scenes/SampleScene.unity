@@ -367,12 +367,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health:
     BaseValue: 1000
-  currentHealth: 0
   Mana:
     BaseValue: 1000
+  Defense:
+    BaseValue: 20
+  Attack:
+    BaseValue: 50
+  CritRate:
+    BaseValue: 20
+  CritDamage:
+    BaseValue: 50
+  Dodge:
+    BaseValue: 1
+  currentHealth: 0
   currentMana: 0
   HealthBar: {fileID: 814124260}
   ManaBar: {fileID: 746219185}
+--- !u!61 &708243384 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6707787450378747337, guid: 11d4c2616cef9874183b96e52a3a58ed, type: 3}
+  m_PrefabInstance: {fileID: 6707787452159331383}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &746219182 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2121150257984018222, guid: faf266a201fc21249b55580390e6e5be, type: 3}
@@ -456,6 +471,14 @@ PrefabInstance:
     - target: {fileID: 2060421561462791348, guid: 0a4e0bcd27be4384db6aa285d9f7eb9f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2922667606102306556, guid: 0a4e0bcd27be4384db6aa285d9f7eb9f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.5819983
+      objectReference: {fileID: 0}
+    - target: {fileID: 2922667606102306556, guid: 0a4e0bcd27be4384db6aa285d9f7eb9f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.6000013
       objectReference: {fileID: 0}
     - target: {fileID: 2922667606102306556, guid: 0a4e0bcd27be4384db6aa285d9f7eb9f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2288,6 +2311,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6707787450378747445, guid: 11d4c2616cef9874183b96e52a3a58ed, type: 3}
+      propertyPath: CrouchDisableCollider
+      value: 
+      objectReference: {fileID: 708243384}
     - target: {fileID: 9101473192825569033, guid: 11d4c2616cef9874183b96e52a3a58ed, type: 3}
       propertyPath: manaBar
       value: 
