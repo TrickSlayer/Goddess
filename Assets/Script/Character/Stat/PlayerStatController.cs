@@ -9,8 +9,14 @@ public class PlayerStatController : MonoBehaviour
 {
     #region slider
     public PlayerStat Health;
-    [HideInInspector] public int currentHealth;
     public PlayerStat Mana;
+    public PlayerStat Defense;
+    public PlayerStat Attack;
+    public PlayerStat CritRate;
+    public PlayerStat CritDamage;
+    public PlayerStat Dodge;
+
+    [HideInInspector] public int currentHealth;
     [HideInInspector] public int currentMana;
 
     public HealthBar HealthBar;
@@ -21,13 +27,23 @@ public class PlayerStatController : MonoBehaviour
     {
         Weapon w = new Weapon();
         w.Equip();
+
+        SetStartHealth();
+        SetStartMana();
+    }
+
+    void SetStartHealth()
+    {
         currentHealth = Health.Value;
-        currentMana = Mana.Value;
         HealthBar.SetMaxHealth(Health.Value);
-        ManaBar.SetMaxMana(Mana.Value);
         HealthBar.SetHealth(currentHealth);
+    }
+
+    void SetStartMana()
+    {
+        currentMana = Mana.Value;
+        ManaBar.SetMaxMana(Mana.Value);
         ManaBar.SetMana(currentMana);
-        Debug.Log(Health.Value + " " + currentHealth);
     }
 
     // Update is called once per frame

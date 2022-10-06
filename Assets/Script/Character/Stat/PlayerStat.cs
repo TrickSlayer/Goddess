@@ -8,7 +8,7 @@ namespace Goddess.PlayerStat
     public class PlayerStat
     {
         public float BaseValue;
-        protected bool isDirty = true;                        // re caculate final value when statModifies change
+        protected bool isDirty = true;                                  // re caculate final value when statModifies change
         protected int _value;
         protected readonly List<StatModify> statModifies;
         public readonly ReadOnlyCollection<StatModify> StatModifies;
