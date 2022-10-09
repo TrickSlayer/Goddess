@@ -9,11 +9,11 @@ namespace Goddess.Item
 {
     public abstract class Item
     {
-        protected PlayerStatController player;
+        protected CharacterStats player;
         public Item()
         {
             GameObject playerTag = GameObject.FindGameObjectWithTag("Player");
-            player = playerTag.GetComponent<PlayerStatController>();
+            player = playerTag.GetComponent<CharacterStats>();
         }
     }
 }

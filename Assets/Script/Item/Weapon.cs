@@ -9,12 +9,12 @@ namespace Goddess.Item
 {
     public class Weapon : Item, IItem
     {
-        StatModify mod1, mod2;
+        Stat mod1, mod2;
 
         public void Equip()
         {
-            player.Health.AddModifier(new StatModify(100, StatModifyType.Flat, this));
-            player.Health.AddModifier(new StatModify(100, StatModifyType.PercentAdd, this));
+            player.Health.AddModifier(new Stat(100, StatType.Flat, this));
+            player.Health.AddModifier(new Stat(100, StatType.PercentAdd, this));
         }
 
         public void Unequip()

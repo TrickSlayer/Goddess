@@ -5,7 +5,12 @@ using UnityEngine.UI;
 
 public class ManaBar : MonoBehaviour
 {
-    public Slider slider;
+    private Slider slider;
+
+    void Awake()
+    {
+        slider = gameObject.GetComponent<Slider>();
+    }
 
     public void SetMaxMana(int mana)
     {
