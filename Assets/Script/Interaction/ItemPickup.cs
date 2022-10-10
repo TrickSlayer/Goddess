@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class vacham : MonoBehaviour
+public class ItemPickup : Interactable
 {
     // Start is called before the first frame update
     void Start()

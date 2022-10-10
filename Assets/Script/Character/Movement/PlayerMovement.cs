@@ -24,12 +24,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!crouch)
         {
-            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
-            animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed; 
+        } else
+        {
+            horizontalMove = 0;
         }
 
-
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (Input.GetButtonDown("Jump") && !controller.Ceiling && !crouch)
         {

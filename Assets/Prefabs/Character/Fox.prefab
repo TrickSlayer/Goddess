@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6707787450378747337}
   - component: {fileID: 6707787450378747336}
   - component: {fileID: 6707787450378747447}
-  - component: {fileID: 9101473192825569033}
+  - component: {fileID: 2252160574556869252}
   m_Layer: 6
   m_Name: Fox
   m_TagString: Player
@@ -144,6 +144,7 @@ MonoBehaviour:
     m_Bits: 128
   GroundCheckPoint: {fileID: 6707787451749021582}
   CeilingCheckPoint: {fileID: 6707787450189480760}
+  CrouchDisableCollider: {fileID: 0}
   GroundedRadius: 0.2
   CeilingRadius: 1
   Grounded: 0
@@ -275,7 +276,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &9101473192825569033
+--- !u!114 &2252160574556869252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,15 +285,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 6707787450378747328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95447ccde79bbb54bbccd2e2ba841684, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b5143b4c35d50e48b4eaffc24fa6c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
-  currentHealth: 0
-  maxMana: 1000
-  currentMana: 0
-  healthBar: {fileID: 0}
-  manaBar: {fileID: 0}
+  Health:
+    BaseValue: 0
+  Mana:
+    BaseValue: 0
+  Defense:
+    BaseValue: 0
+  Attack:
+    BaseValue: 0
+  CritRate:
+    BaseValue: 0
+  CritDamage:
+    BaseValue: 0
+  Dodge:
+    BaseValue: 0
 --- !u!1 &6707787451749021583
 GameObject:
   m_ObjectHideFlags: 0
