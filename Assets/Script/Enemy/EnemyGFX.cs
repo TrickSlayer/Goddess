@@ -4,8 +4,14 @@ using UnityEngine;
 using Pathfinding;
 public class EnemyGFX : MonoBehaviour
 {
-    public AIPath aIPath;
+    AIPath aIPath;
     // Start is called before the first frame update
+    void Awake()
+    {
+        GameObject parent = gameObject.transform.parent.gameObject;
+        aIPath = parent.GetComponent<AIPath>();
+    }
+
     void Start()
     {
         
