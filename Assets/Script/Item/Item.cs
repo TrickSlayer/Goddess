@@ -5,15 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Goddess.Item
+[RequireComponent(typeof(Rigidbody2D))]
+public class Item : MonoBehaviour
 {
-    public abstract class Item
+    protected CharacterStats player;
+
+    public ItemData data;
+    [HideInInspector] public Rigidbody2D Rigidbody2D;
+
+    private void Awake()
     {
-        protected CharacterStats player;
-        public Item()
-        {
-            GameObject playerTag = GameObject.FindGameObjectWithTag("Player");
-            player = playerTag.GetComponent<CharacterStats>();
-        }
+        Rigidbody2D = GetComponent<Rigidbody2D>();
+        GameObject playerTag = GameObject.FindGameObjectWithTag("Player");
+        player = playerTag.GetComponent<CharacterStats>();
     }
 }
+
