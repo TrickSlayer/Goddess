@@ -12,6 +12,7 @@ namespace Goddess.PlayerStat
         PercentMut = 400,
     }
 
+    [Serializable]
     public class Stat
     {
         public float Value;
@@ -40,7 +41,7 @@ namespace Goddess.PlayerStat
         public float BaseValue;
         protected bool isDirty = true;                                  // re caculate final value when stats change
         protected int _value;
-        protected List<Stat> stats { get; private set; }
+        public List<Stat> Stats { get; private set; }
         protected float lastBaseValue = float.MinValue;
 
         public virtual int Value
@@ -59,7 +60,7 @@ namespace Goddess.PlayerStat
 
         public CharacterStat()
         {
-            stats = new List<Stat>();
+            Stats = new List<Stat>();
         }
 
         public CharacterStat(float baseValue) : this()
@@ -70,13 +71,13 @@ namespace Goddess.PlayerStat
         public virtual void AddModifier(Stat mod)
         {
             isDirty = true;
-            stats.Add(mod);
-            stats.Sort(CompareModifilerOrder);
+            Stats.Add(mod);
+            Stats.Sort(CompareModifilerOrder);
         }
 
-        public virtual void AddModifier(CharacterStat stats)
+        public virtual void AddModifier(List<Stat> stats)
         {
-            foreach (Stat mod in stats.stats)
+            foreach (Stat mod in stats)
             {
                 AddModifier(mod);
             }
@@ -84,7 +85,7 @@ namespace Goddess.PlayerStat
 
         public virtual bool RemoveModifier(Stat mod)
         {
-            if (stats.Remove(mod))
+            if (Stats.Remove(mod))
             {
                 isDirty = true;
                 return true;
@@ -92,9 +93,9 @@ namespace Goddess.PlayerStat
             return false;
         }
 
-        public virtual void RemoveModifier(CharacterStat stats)
+        public virtual void RemoveModifier(List<Stat> stats)
         {
-            foreach (Stat mod in stats.stats)
+            foreach (Stat mod in stats)
             {
                 RemoveModifier(mod);
             }
@@ -103,13 +104,13 @@ namespace Goddess.PlayerStat
         public virtual bool RemoveAllModifierFromSource(object source)
         {
             bool remove = false;
-            for (int i = stats.Count - 1; i >= 0; i--)
+            for (int i = Stats.Count - 1; i >= 0; i--)
             {
-                if (stats[i].Source == source)
+                if (Stats[i].Source == source)
                 {
                     isDirty = true;
                     remove = true;
-                    stats.RemoveAt(i);
+                    Stats.RemoveAt(i);
                 }
             }
             return remove;
@@ -132,9 +133,9 @@ namespace Goddess.PlayerStat
         {
             float final = BaseValue;
             float sumPercentAdd = 0;
-            for (int i = 0; i < stats.Count; i++)
+            for (int i = 0; i < Stats.Count; i++)
             {
-                Stat mod = stats[i];
+                Stat mod = Stats[i];
 
                 switch (mod.Type)
                 {
@@ -144,7 +145,7 @@ namespace Goddess.PlayerStat
                         break;
                     case StatType.PercentAdd:
                         sumPercentAdd += mod.Value;
-                        if (i == stats.Count - 1 || stats[i + 1].Type != StatType.PercentAdd)
+                        if (i == Stats.Count - 1 || Stats[i + 1].Type != StatType.PercentAdd)
                         {
                             final *= 1 + sumPercentAdd / 100;
                             sumPercentAdd = 0;

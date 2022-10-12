@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void DropItem(Item item)
     {
+
         Vector3 spawnLocation = transform.position;
 
         float randX = Random.Range(-1f, 1f);
@@ -25,6 +27,5 @@ public class PlayerInventory : MonoBehaviour
             Quaternion.identity
             );
 
-        //droppedItem.Rigidbody2D.AddForce(spawnOffset * 2f, ForceMode2D.Impulse);
     }
 }

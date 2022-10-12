@@ -50,16 +50,14 @@ public class CharacterStats : MonoBehaviour
     [HideInInspector] public int currentHealth { get; private set; }
     [HideInInspector] public int currentMana { get; private set; }
 
-    void SetStartHealth()
+    protected void SetStartHealth()
     {
-        currentHealth = Health.Value;
         HealthBar.SetMaxHealth(Health.Value);
         HealthBar.SetHealth(currentHealth);
     }
 
-    void SetStartMana()
+    protected void SetStartMana()
     {
-        currentMana = Mana.Value;
         ManaBar.SetMaxMana(Mana.Value);
         ManaBar.SetMana(currentMana);
     }

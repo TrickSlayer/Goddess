@@ -14,3 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cherry
   icon: {fileID: 21300000, guid: 06c04197e6f394ba897942f561e896c1, type: 3}
+  description: A delicious cherry, when eat can recover health (+20)
+  recoverHealth: 20
+  recoverMana: 0
+  Health: []
+  Mana: []
+  Defense: []
+  Attack: []
+  CritRate: []
+  CritDamage: []
+  Dodge: []

@@ -55,6 +55,8 @@ public class Inventory
     }
 
     public List<Slot> slots = new List<Slot> ();
+    public bool needFresh = true;
+    public Slot newSlot = null;
 
     public Inventory(int numSlots)
     {
@@ -67,15 +69,19 @@ public class Inventory
 
     public void Add(Item item)
     {
+        needFresh = true;
+
         Slot s = slots.Where(s => s.itemName == item.data.itemName && s.CanAddItem()).FirstOrDefault();
 
         if (s != null)
         {
             s.AddItem(item);
+            newSlot = s;
         } else
         {
             Slot e = slots.Where(s => s.itemName == "").FirstOrDefault();
             e.AddItem(item);
+            newSlot = e;
         }
 
     }

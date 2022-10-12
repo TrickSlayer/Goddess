@@ -6,13 +6,11 @@ using UnityEngine.AI;
 
 public class PlayerStats : CharacterStats
 {
-    Camera cam;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        cam = Camera.main;
         /* EquipmentManager.instance.onEquipmentChanged += OnEquipmentChanged;*/
     }
 
@@ -22,28 +20,33 @@ public class PlayerStats : CharacterStats
 
     }
 
-    void OnEquipmentChanged(Equipment newItem, Equipment oldItem)
+    public void OnEquipmentChanged(Item newItem, Item oldItem)
     {
         if (newItem != null)
         {
-            Health.AddModifier(newItem.Health);
-            Mana.AddModifier(newItem.Mana);
-            Defense.AddModifier(newItem.Defense);
-            Attack.AddModifier(newItem.Attack);
-            CritRate.AddModifier(newItem.CritRate);
-            CritDamage.AddModifier(newItem.CritDamage);
-            Dodge.AddModifier(newItem.Dodge);
+            Health.AddModifier(newItem.data.Health);
+            Mana.AddModifier(newItem.data.Mana);
+            Defense.AddModifier(newItem.data.Defense);
+            Attack.AddModifier(newItem.data.Attack);
+            CritRate.AddModifier(newItem.data.CritRate);
+            CritDamage.AddModifier(newItem.data.CritDamage);
+            Dodge.AddModifier(newItem.data.Dodge);
+            RecoverHealth(newItem.data.recoverHealth);
+            RecoverMana(newItem.data.recoverMana);
         }
 
         if (oldItem != null)
         {
-            Health.RemoveModifier(oldItem.Health);
-            Mana.RemoveModifier(oldItem.Mana);
-            Defense.RemoveModifier(oldItem.Defense);
-            Attack.RemoveModifier(oldItem.Attack);
-            CritRate.RemoveModifier(oldItem.CritRate);
-            CritDamage.RemoveModifier(oldItem.CritDamage);
-            Dodge.RemoveModifier(oldItem.Dodge);
+            Health.RemoveModifier(oldItem.data.Health);
+            Mana.RemoveModifier(oldItem.data.Mana);
+            Defense.RemoveModifier(oldItem.data.Defense);
+            Attack.RemoveModifier(oldItem.data.Attack);
+            CritRate.RemoveModifier(oldItem.data.CritRate);
+            CritDamage.RemoveModifier(oldItem.data.CritDamage);
+            Dodge.RemoveModifier(oldItem.data.Dodge);
         }
+
+        SetStartHealth();
+        SetStartMana();
     }
 }
