@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Goddess.PlayerStat;
-using Goddess.Item;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -51,16 +50,14 @@ public class CharacterStats : MonoBehaviour
     [HideInInspector] public int currentHealth { get; private set; }
     [HideInInspector] public int currentMana { get; private set; }
 
-    void SetStartHealth()
+    protected void SetStartHealth()
     {
-        currentHealth = Health.Value;
         HealthBar.SetMaxHealth(Health.Value);
         HealthBar.SetHealth(currentHealth);
     }
 
-    void SetStartMana()
+    protected void SetStartMana()
     {
-        currentMana = Mana.Value;
         ManaBar.SetMaxMana(Mana.Value);
         ManaBar.SetMana(currentMana);
     }
@@ -85,6 +82,19 @@ public class CharacterStats : MonoBehaviour
 
         ManaBar.SetMana(currentMana);
     }
+
+    public void RecoverHealth(int health)
+    {
+        currentHealth += health;
+        HealthBar.SetHealth(currentHealth);
+    }
+
+    public void RecoverMana(int mana)
+    {
+        currentMana += mana;
+        ManaBar.SetMana(currentMana);
+    }
+
 
     #endregion
 

@@ -22,10 +22,18 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Movement();
+
+    }
+
+    public void Movement()
+    {
         if (!crouch)
         {
-            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed; 
-        } else
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        }
+        else
         {
             horizontalMove = 0;
         }
@@ -46,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = false;
         }
-
     }
 
     public void OnLanding()
