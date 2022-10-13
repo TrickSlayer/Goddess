@@ -29,6 +29,11 @@ public class Sign : MonoBehaviour
                 dialogBox.SetActive(true);
                 text.text = dialog;
             }
+        } 
+        else
+        if(dialogBox.activeInHierarchy && !inRange)
+        {
+            dialogBox.SetActive(false);
         }
     }
 
@@ -38,7 +43,6 @@ public class Sign : MonoBehaviour
         {
             inRange = true;
         }
-        Debug.Log(inRange);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -47,6 +51,5 @@ public class Sign : MonoBehaviour
         {
             inRange = false;
         }
-        Debug.Log(inRange);
     }
 }

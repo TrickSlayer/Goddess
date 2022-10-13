@@ -43,7 +43,6 @@ public class Collectable : MonoBehaviour
                     if (Item != null)
                     {
                         playerInv.inventory.Add(Item);
-                        Debug.Log(Item.data.icon);
                     }
 
                 }

@@ -7,7 +7,6 @@ using static Inventory;
 
 public class Inventory_UI : MonoBehaviour
 {
-    public GameObject inventoryPanel;
     public PlayerInventory playerInventory;
     public List<Slot_UI> slots = new List<Slot_UI>();
     public GameObject detailPanel;
@@ -15,7 +14,6 @@ public class Inventory_UI : MonoBehaviour
 
     private void Awake()
     {
-        inventoryPanel.SetActive(false);
         detailPanel.SetActive(false);
         detail = detailPanel.GetComponent<InventoryDetail_UI>();
     }
@@ -23,11 +21,7 @@ public class Inventory_UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ToggleInventory();
-        }
-        if (playerInventory.inventory.needFresh)
+        if (Menu_UI.instance.Show && playerInventory.inventory.needFresh)
         {
             Refresh();
 
@@ -36,19 +30,6 @@ public class Inventory_UI : MonoBehaviour
                 playerInventory.inventory.newSlot = null;
                 RefreshDetail(playerInventory.inventory.slots[detail.slotId]);
             }
-        }
-    }
-
-    public void ToggleInventory()
-    {
-        if (!inventoryPanel.activeSelf)
-        {
-            inventoryPanel.SetActive(true);
-            Refresh();
-        }
-        else
-        {
-            inventoryPanel.SetActive(false);
         }
     }
 
@@ -95,7 +76,6 @@ public class Inventory_UI : MonoBehaviour
 
         if (itemToDrop != null)
         {
-            Debug.Log(itemToDrop);
             playerInventory.DropItem(itemToDrop);
             playerInventory.inventory.Remove(slotId);
             Refresh();
