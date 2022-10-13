@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    public Item[] items;
+/*    public Item[] items;
 
     private Dictionary<string, Item> nameItemsDict
         = new Dictionary<string, Item>();
 
     private void Awake()
     {
-        foreach(Item item in items)
+        foreach (Item item in items)
         {
             AddItem(item);
         }
@@ -33,5 +33,5 @@ public class ItemManager : MonoBehaviour
         }
 
         return null;
-    }
+    }*/
 }

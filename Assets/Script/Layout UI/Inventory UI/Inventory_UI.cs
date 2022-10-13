@@ -79,15 +79,23 @@ public class Inventory_UI : MonoBehaviour
         }
     }
 
+    private Item getItemDrop(int slotId)
+    {
+        GameObject objectItem = ObjectPooler.instance.GetGameObject(
+            playerInventory.inventory.slots[slotId].itemName);
+
+        Item itemToDrop = objectItem.GetComponent<Item>();
+
+        return itemToDrop;
+    }
+
     public void Remove(int slotId)
     {
-
-        Item itemToDrop = GameManager.instance.itemManager
-            .GetItemByName(playerInventory.inventory.slots[slotId].itemName);
-
+        Item itemToDrop = getItemDrop(slotId);
 
         if (itemToDrop != null)
         {
+            Debug.Log(itemToDrop);
             playerInventory.DropItem(itemToDrop);
             playerInventory.inventory.Remove(slotId);
             Refresh();
@@ -96,6 +104,26 @@ public class Inventory_UI : MonoBehaviour
                 detail.inventorySlot = null;
                 detailPanel.SetActive(false);
             }
+            RefreshDetail(playerInventory.inventory.slots[slotId]);
+        }
+
+    }
+
+    public void RemoveAll(int slotId)
+    {
+        Item itemToDrop = getItemDrop(slotId);
+
+        if (itemToDrop != null)
+        {
+            int quantity = Int32.Parse(slots[slotId].quantityText.text);
+            while (quantity-- > 0)
+            {
+                playerInventory.DropItem(itemToDrop);
+                playerInventory.inventory.Remove(slotId);
+            }
+            Refresh();
+            detail.inventorySlot = null;
+            detailPanel.SetActive(false);
             RefreshDetail(playerInventory.inventory.slots[slotId]);
         }
 
@@ -120,39 +148,16 @@ public class Inventory_UI : MonoBehaviour
             return;
         }
 
-        detail.SetItem(slot);
-        detailPanel.SetActive(true);
-
-    }
-
-    public void RemoveAll(int slotId)
-    {
-
-        Item itemToDrop = GameManager.instance.itemManager
-            .GetItemByName(playerInventory.inventory.slots[slotId].itemName);
-
-
-        if (itemToDrop != null)
+        if (detail.SetItem(slot))
         {
-            int quantity = Int32.Parse(slots[slotId].quantityText.text);
-            while (quantity-- > 0)
-            {
-                playerInventory.DropItem(itemToDrop);
-                playerInventory.inventory.Remove(slotId);
-            }
-            Refresh();
-            detail.inventorySlot = null;
-            detailPanel.SetActive(false);
-            RefreshDetail(playerInventory.inventory.slots[slotId]);
+            detailPanel.SetActive(true);
         }
 
     }
 
     public void UseItem(int slotId)
     {
-        Item itemToDrop = GameManager.instance.itemManager
-            .GetItemByName(playerInventory.inventory.slots[slotId].itemName);
-
+        Item itemToDrop = getItemDrop(slotId);
 
         if (itemToDrop != null)
         {

@@ -5,7 +5,17 @@ public class Collectable : MonoBehaviour
 {
     [HideInInspector] bool clone = false;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private bool onGround = false;
+    Rigidbody2D Rigidbody2D;
+    Item Item;
+
+    private void Awake()
+    {
+        Rigidbody2D = GetComponent<Rigidbody2D>();
+        Item = GetComponent<Item>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
         {
@@ -17,18 +27,23 @@ public class Collectable : MonoBehaviour
             {
                 clone = true;
 
-                if (player.Health.Value != player.currentHealth)
+                if (player.Health.Value != player.currentHealth && Item.data.recoverHealth != 0)
                 {
-                    player.RecoverHealth(20);
+                    player.OnEquipmentChanged(Item, null);
+                } 
+                else
+                if (player.Mana.Value != player.currentMana && Item.data.recoverMana != 0)
+                {
+                    player.OnEquipmentChanged(Item, null);
                 }
                 else
                 {
                     PlayerInventory playerInv = collision.gameObject.GetComponent<PlayerInventory>();
-                    Item item = GetComponent<Item>();
 
-                    if (item != null)
+                    if (Item != null)
                     {
-                        playerInv.inventory.Add(item);
+                        playerInv.inventory.Add(Item);
+                        Debug.Log(Item.data.icon);
                     }
 
                 }
@@ -36,7 +51,32 @@ public class Collectable : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        else
+        {
+            onGround = true;
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
+        {
+            onGround = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (onGround)
+        {
+            Rigidbody2D.velocity = Vector2.zero;
+            Rigidbody2D.gravityScale = 0;
+        }
+
+        if (!onGround)
+        {
+            Rigidbody2D.gravityScale = 1;
+        }
     }
 
 }

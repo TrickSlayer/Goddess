@@ -17,12 +17,19 @@ public class InventoryDetail_UI : MonoBehaviour
     [HideInInspector] public int slotId;
     private Item item;
 
-    public void SetItem(Inventory.Slot inventorySlot)
+    public bool SetItem(Inventory.Slot inventorySlot)
     {
         this.inventorySlot = inventorySlot;
 
-        item = GameManager.instance.itemManager
-            .GetItemByName(inventorySlot.itemName);
+        GameObject objectItem = ObjectPooler.instance
+            .GetGameObject(inventorySlot.itemName);
+
+        if (objectItem == null)
+        {
+            return false;
+        }
+
+        item = objectItem.GetComponent<Item>();
 
         slot.SetItem(inventorySlot);
 
@@ -31,6 +38,8 @@ public class InventoryDetail_UI : MonoBehaviour
         Description.text = item.data.description;
 
         slotId = findId();
+
+        return true;
     }
 
     private int findId()
