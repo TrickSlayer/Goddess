@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Goddess.PlayerStat;
+using Random = System.Random;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -16,8 +17,8 @@ public class CharacterStats : MonoBehaviour
 
     private void Awake()
     {
-        HealthBar   = GameObject.FindGameObjectWithTag("CharacterHealthBar").GetComponent<HealthBar>();
-        ManaBar     = GameObject.FindGameObjectWithTag("CharacterManaBar").GetComponent<ManaBar>();
+        HealthBar   = GameObject.FindGameObjectWithTag("CharacterHealthBar").GetComponent<InformationBar>();
+        ManaBar     = GameObject.FindGameObjectWithTag("CharacterManaBar").GetComponent<InformationBar>();
         currentHealth = Health.Value;
         currentMana = Mana.Value;
     }
@@ -44,31 +45,38 @@ public class CharacterStats : MonoBehaviour
     }
 
     #region slider
-    private HealthBar HealthBar;
-    private ManaBar ManaBar;
+    [HideInInspector] public InformationBar HealthBar;
+    [HideInInspector] public InformationBar ManaBar;
 
     [HideInInspector] public int currentHealth { get; private set; }
     [HideInInspector] public int currentMana { get; private set; }
 
     protected void SetStartHealth()
     {
-        HealthBar.SetMaxHealth(Health.Value);
-        HealthBar.SetHealth(currentHealth);
+        HealthBar.SetMaxValue(Health.Value);
+        HealthBar.SetValue(currentHealth);
     }
 
     protected void SetStartMana()
     {
-        ManaBar.SetMaxMana(Mana.Value);
-        ManaBar.SetMana(currentMana);
+        ManaBar.SetMaxValue(Mana.Value);
+        ManaBar.SetValue(currentMana);
     }
 
     void TakeDamage(int damage)
     {
+        Random ran = new System.Random();
+        int rate = ran.Next(0, 100);
+        if (rate < Dodge.Value)
+        {
+            return;
+        }
+
         damage -= Defense.Value;
 
         currentHealth -= Mathf.Clamp(damage, 0, int.MaxValue);
 
-        HealthBar.SetHealth(currentHealth);
+        HealthBar.SetValue(currentHealth);
 
         if (currentHealth < 0)
         {
@@ -76,23 +84,43 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    public int AttackEnemy()
+    {
+        int damage = Attack.Value;
+        Random ran = new System.Random();
+        int rate = ran.Next(0, 100);
+        if (rate < CritRate.Value)
+        {
+            damage *= CritDamage.Value / 100;
+        }
+        return damage;
+    }
+
     void UseSkill(int mana)
     {
         currentMana -= mana;
 
-        ManaBar.SetMana(currentMana);
+        ManaBar.SetValue(currentMana);
     }
 
     public void RecoverHealth(int health)
     {
         currentHealth += health;
-        HealthBar.SetHealth(currentHealth);
+        if (currentHealth > Health.Value)
+        {
+            currentHealth = Health.Value;
+        }
+        HealthBar.SetValue(currentHealth);
     }
 
     public void RecoverMana(int mana)
     {
         currentMana += mana;
-        ManaBar.SetMana(currentMana);
+        if(currentMana > Mana.Value)
+        {
+            currentMana = Mana.Value;
+        }
+        ManaBar.SetValue(currentMana);
     }
 
 

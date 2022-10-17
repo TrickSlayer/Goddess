@@ -6,11 +6,14 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public Inventory inventory;
+    public static PlayerInventory instance;
 
     void Awake()
     {
+        instance = this;
         inventory = new Inventory(21);
     }
+
 
     public void DropItem(Item item)
     {

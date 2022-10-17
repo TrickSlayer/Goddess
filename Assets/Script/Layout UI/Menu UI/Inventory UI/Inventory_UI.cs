@@ -7,41 +7,41 @@ using static Inventory;
 
 public class Inventory_UI : MonoBehaviour
 {
-    public PlayerInventory playerInventory;
     public List<Slot_UI> slots = new List<Slot_UI>();
     public GameObject detailPanel;
-    private InventoryDetail_UI detail;
+    [HideInInspector] public static Inventory_UI instance;
 
     private void Awake()
     {
+        instance = this;
         detailPanel.SetActive(false);
-        detail = detailPanel.GetComponent<InventoryDetail_UI>();
+        InventoryDetail_UI.instance = detailPanel.GetComponent<InventoryDetail_UI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Menu_UI.instance.Show && playerInventory.inventory.needFresh)
+        if (Menu_UI.instance.Show && PlayerInventory.instance.inventory.needFresh)
         {
             Refresh();
 
-            if (playerInventory.inventory.newSlot == detail.inventorySlot)
+            if (PlayerInventory.instance.inventory.newSlot == InventoryDetail_UI.instance.inventorySlot)
             {
-                playerInventory.inventory.newSlot = null;
-                RefreshDetail(playerInventory.inventory.slots[detail.slotId]);
+                PlayerInventory.instance.inventory.newSlot = null;
+                RefreshDetail(PlayerInventory.instance.inventory.slots[InventoryDetail_UI.instance.slotId]);
             }
         }
     }
 
     void Refresh()
     {
-        if (slots.Count == playerInventory.inventory.slots.Count)
+        if (slots.Count == PlayerInventory.instance.inventory.slots.Count)
         {
             for (int i = 0; i < slots.Count; i++)
             {
-                if (playerInventory.inventory.slots[i].itemName != "")
+                if (PlayerInventory.instance.inventory.slots[i].itemName != "")
                 {
-                    slots[i].SetItem(playerInventory.inventory.slots[i]);
+                    slots[i].SetItem(PlayerInventory.instance.inventory.slots[i]);
                 }
                 else
                 {
@@ -49,21 +49,21 @@ public class Inventory_UI : MonoBehaviour
                 }
             }
         }
-        playerInventory.inventory.needFresh = false;
+        PlayerInventory.instance.inventory.needFresh = false;
     }
 
     void RefreshDetail(Inventory.Slot slot)
     {
         if (detailPanel.activeSelf)
         {
-            detail.SetItem(slot);
+            InventoryDetail_UI.instance.SetItem(slot);
         }
     }
 
     private Item getItemDrop(int slotId)
     {
         GameObject objectItem = ObjectPooler.instance.GetGameObject(
-            playerInventory.inventory.slots[slotId].itemName);
+            PlayerInventory.instance.inventory.slots[slotId].itemName);
 
         Item itemToDrop = objectItem.GetComponent<Item>();
 
@@ -76,15 +76,15 @@ public class Inventory_UI : MonoBehaviour
 
         if (itemToDrop != null)
         {
-            playerInventory.DropItem(itemToDrop);
-            playerInventory.inventory.Remove(slotId);
+            PlayerInventory.instance.DropItem(itemToDrop);
+            PlayerInventory.instance.inventory.Remove(slotId);
             Refresh();
             if (slots[slotId].quantityText.text == "")
             {
-                detail.inventorySlot = null;
+                InventoryDetail_UI.instance.inventorySlot = null;
                 detailPanel.SetActive(false);
             }
-            RefreshDetail(playerInventory.inventory.slots[slotId]);
+            RefreshDetail(PlayerInventory.instance.inventory.slots[slotId]);
         }
 
     }
@@ -98,37 +98,37 @@ public class Inventory_UI : MonoBehaviour
             int quantity = Int32.Parse(slots[slotId].quantityText.text);
             while (quantity-- > 0)
             {
-                playerInventory.DropItem(itemToDrop);
-                playerInventory.inventory.Remove(slotId);
+                PlayerInventory.instance.DropItem(itemToDrop);
+                PlayerInventory.instance.inventory.Remove(slotId);
             }
             Refresh();
-            detail.inventorySlot = null;
+            InventoryDetail_UI.instance.inventorySlot = null;
             detailPanel.SetActive(false);
-            RefreshDetail(playerInventory.inventory.slots[slotId]);
+            RefreshDetail(PlayerInventory.instance.inventory.slots[slotId]);
         }
 
     }
 
     public void Selected(int slotId)
     {
-        Inventory.Slot slot = playerInventory.inventory.slots[slotId];
+        Inventory.Slot slot = PlayerInventory.instance.inventory.slots[slotId];
 
-        if (slot == detail.inventorySlot)
+        if (slot == InventoryDetail_UI.instance.inventorySlot)
         {
-            detail.inventorySlot = null;
+            InventoryDetail_UI.instance.inventorySlot = null;
         }
         else
         {
-            detail.inventorySlot = slot;
+            InventoryDetail_UI.instance.inventorySlot = slot;
         }
 
-        if (detail.inventorySlot == null)
+        if (InventoryDetail_UI.instance.inventorySlot == null)
         {
             detailPanel.SetActive(false);
             return;
         }
 
-        if (detail.SetItem(slot))
+        if (InventoryDetail_UI.instance.SetItem(slot))
         {
             detailPanel.SetActive(true);
         }
@@ -141,14 +141,14 @@ public class Inventory_UI : MonoBehaviour
 
         if (itemToDrop != null)
         {
-            playerInventory.inventory.Remove(slotId);
+            PlayerInventory.instance.inventory.Remove(slotId);
             Refresh();
             if (slots[slotId].quantityText.text == "")
             {
-                detail.inventorySlot = null;
+                InventoryDetail_UI.instance.inventorySlot = null;
                 detailPanel.SetActive(false);
             }
-            RefreshDetail(playerInventory.inventory.slots[slotId]);
+            RefreshDetail(PlayerInventory.instance.inventory.slots[slotId]);
         }
     }
 

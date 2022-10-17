@@ -27,7 +27,7 @@ public class Collectable : MonoBehaviour
             {
                 clone = true;
 
-                if (player.Health.Value != player.currentHealth && Item.data.recoverHealth != 0)
+                if (player.Health.Value < player.currentHealth && Item.data.recoverHealth != 0)
                 {
                     player.OnEquipmentChanged(Item, null);
                 } 
@@ -47,7 +47,7 @@ public class Collectable : MonoBehaviour
 
                 }
 
-                Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
             }
         }
         else
