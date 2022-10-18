@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,9 +22,17 @@ public class Menu_UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ToggleInventory();
+
+            if (Show)
+            {
+                Pause();
+            } else
+            {
+                Resume();
+            }
         }
     }
 
@@ -53,5 +62,15 @@ public class Menu_UI : MonoBehaviour
                 panel[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
     }
 }
