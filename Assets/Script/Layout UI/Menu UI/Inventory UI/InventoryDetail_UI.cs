@@ -10,19 +10,30 @@ public class InventoryDetail_UI : MonoBehaviour
     public Slot_UI slot;
     public TextMeshProUGUI Name;
     public TextMeshProUGUI Description;
-    public Inventory_UI inventoryUI;
-    public PlayerStats player;
 
     [HideInInspector] public Inventory.Slot inventorySlot = null;
     [HideInInspector] public int slotId;
+    [HideInInspector] public static InventoryDetail_UI instance;
     private Item item;
 
-    public void SetItem(Inventory.Slot inventorySlot)
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    public bool SetItem(Inventory.Slot inventorySlot)
     {
         this.inventorySlot = inventorySlot;
 
-        item = GameManager.instance.itemManager
-            .GetItemByName(inventorySlot.itemName);
+        GameObject objectItem = ObjectPooler.instance
+            .GetGameObject(inventorySlot.itemName);
+
+        if (objectItem == null)
+        {
+            return false;
+        }
+
+        item = objectItem.GetComponent<Item>();
 
         slot.SetItem(inventorySlot);
 
@@ -31,14 +42,16 @@ public class InventoryDetail_UI : MonoBehaviour
         Description.text = item.data.description;
 
         slotId = findId();
+
+        return true;
     }
 
     private int findId()
     {
-        for (int i = 0; i < inventoryUI.playerInventory.inventory.slots.Count; i++)
+        for (int i = 0; i < PlayerInventory.instance.inventory.slots.Count; i++)
         {
 
-            if (inventoryUI.playerInventory.inventory.slots[i] == inventorySlot)
+            if (PlayerInventory.instance.inventory.slots[i] == inventorySlot)
             {
                 return i;
             }
@@ -49,21 +62,21 @@ public class InventoryDetail_UI : MonoBehaviour
     public void DropItem()
     {
         if (slotId != -1)
-            inventoryUI.Remove(slotId);
+            Inventory_UI.instance.Remove(slotId);
     }
 
     public void DropAllItem()
     {
         if (slotId != -1)
-            inventoryUI.RemoveAll(slotId);
+            Inventory_UI.instance.RemoveAll(slotId);
     }
 
     public void UseItem()
     {
         if (slotId != -1)
         {
-            inventoryUI.UseItem(slotId);
-            player.OnEquipmentChanged(item, null);
+            Inventory_UI.instance.UseItem(slotId);
+            PlayerStats.instance.OnEquipmentChanged(item, null);
         }
     }
 }

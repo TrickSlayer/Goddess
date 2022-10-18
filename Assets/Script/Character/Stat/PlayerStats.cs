@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class PlayerStats : CharacterStats
 {
+    [HideInInspector] public static PlayerStats instance;
 
     // Start is called before the first frame update
     public override void Start()

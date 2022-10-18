@@ -6,11 +6,14 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public Inventory inventory;
+    public static PlayerInventory instance;
 
     void Awake()
     {
+        instance = this;
         inventory = new Inventory(21);
     }
+
 
     public void DropItem(Item item)
     {
@@ -21,9 +24,9 @@ public class PlayerInventory : MonoBehaviour
 
         Vector3 spawnOffset = new Vector3(randX, 1f, 0f).normalized;
 
-        Item droppedItem = Instantiate(
-            item, 
-            spawnLocation + 3 * spawnOffset, 
+        ObjectPooler.instance.SpawnFromPool(
+            item.data.name,
+            spawnLocation + 3 * spawnOffset,
             Quaternion.identity
             );
 
