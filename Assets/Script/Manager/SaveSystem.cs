@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System;
 
 public static class SaveSystem
 {
@@ -20,17 +21,22 @@ public static class SaveSystem
 
     public static PlayerData LoadPlayer()
     {
-        string path = Application.persistentDataPath + "/player.fun";
-        FileStream stream = new FileStream(path, FileMode.Open);
-        if (File.Exists(path) && stream.Length > 0)
+        try
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            PlayerData data = formatter.Deserialize(stream) as PlayerData;
-            stream.Close();
-            return data;
-        } else
+            string path = Application.persistentDataPath + "/player.fun";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            if (File.Exists(path) && stream.Length > 0)
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                PlayerData data = formatter.Deserialize(stream) as PlayerData;
+                stream.Close();
+                return data;
+            }
+        } catch (Exception e)
         {
-            return null;
+            Debug.Log(e);
+            Debug.Log("New Game");
         }
+        return null;
     }
 }

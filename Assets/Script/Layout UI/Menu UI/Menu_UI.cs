@@ -40,11 +40,13 @@ public class Menu_UI : MonoBehaviour
     {
         if (!backgroundPanel.activeSelf)
         {
+            Resume();
             backgroundPanel.SetActive(true);
             Show = true;
         }
         else
         {
+            Resume();
             backgroundPanel.SetActive(false);
             Show = false;
         }
@@ -72,5 +74,11 @@ public class Menu_UI : MonoBehaviour
     public void Pause()
     {
         Time.timeScale = 0f;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+
     }
 }
