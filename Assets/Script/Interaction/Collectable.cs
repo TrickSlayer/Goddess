@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Item))]
+[RequireComponent(typeof(Selectable))]
 public class Collectable : MonoBehaviour
 {
     [HideInInspector] bool clone = false;
@@ -13,7 +14,7 @@ public class Collectable : MonoBehaviour
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Item = GetComponent<Item>();
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
