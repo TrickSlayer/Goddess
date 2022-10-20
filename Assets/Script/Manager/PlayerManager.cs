@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [HideInInspector] PlayerInventory inventoryP;
-    [HideInInspector] PlayerStats statsP;
-    [HideInInspector] PlayerMovement movementP;
-    [HideInInspector] GameObject player;
+    [HideInInspector] public PlayerInventory inventoryP;
+    [HideInInspector] public PlayerStats statsP;
+    [HideInInspector] public PlayerMovement movementP;
+    [HideInInspector] public GameObject player;
     // Start is called before the first frame update
+
+    public static PlayerManager instance;
 
     private void Awake()
     {
@@ -16,6 +18,7 @@ public class PlayerManager : MonoBehaviour
         inventoryP = player.GetComponent<PlayerInventory>();
         statsP = player.GetComponent<PlayerStats>();
         movementP = player.GetComponent<PlayerMovement>();
+        instance = this;
     }
 
     public void SavePlayer()
@@ -39,6 +42,8 @@ public class PlayerManager : MonoBehaviour
         statsP.Dodge = data.Dodge;
         statsP.CritDamage = data.CritDamage;
         statsP.CritRate = data.CritRate;
+        statsP.SetHealth(data.currentHealth);
+        statsP.SetMana(data.currentMana);
 
         inventoryP.inventory.slots = data.getSlots();
 

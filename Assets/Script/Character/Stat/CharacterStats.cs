@@ -28,6 +28,11 @@ public class CharacterStats : MonoBehaviour
     {
         SetStartHealth();
         SetStartMana();
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
     }
 
     // Update is called once per frame
@@ -78,8 +83,9 @@ public class CharacterStats : MonoBehaviour
 
         HealthBar.SetValue(currentHealth);
 
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
+            currentHealth = 0;
             Die();
         }
     }
@@ -123,7 +129,25 @@ public class CharacterStats : MonoBehaviour
         ManaBar.SetValue(currentMana);
     }
 
+    public void SetHealth(int health)
+    {
+        currentHealth = health;
+        if (currentHealth > Health.Value)
+        {
+            currentHealth = Health.Value;
+        }
+        HealthBar.SetValue(currentHealth);
+    }
 
+    public void SetMana(int mana)
+    {
+        currentMana = mana;
+        if (currentMana > Mana.Value)
+        {
+            currentMana = Mana.Value;
+        }
+        ManaBar.SetValue(currentMana);
+    }
     #endregion
 
     public virtual void Die()

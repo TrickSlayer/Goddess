@@ -50,4 +50,14 @@ public class PlayerStats : CharacterStats
         SetStartHealth();
         SetStartMana();
     }
+
+    [HideInInspector] public bool wasDie = false;
+
+    public override void Die()
+    {
+        base.Die();
+        wasDie = true;
+        Revival_UI.instance.gameObject.SetActive(true);
+        Time.timeScale = 0;
+    }
 }

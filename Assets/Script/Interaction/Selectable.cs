@@ -33,7 +33,6 @@ public class Selectable : MonoBehaviour
         Transform mark = transform.Find("Mark(Clone)");
         if (mark != null)
         {
-            Debug.Log("He he");
             float dist = Vector3.Distance(Player.transform.position, transform.position);
 
             if (dist > range)

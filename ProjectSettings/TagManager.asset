@@ -9,6 +9,7 @@ TagManager:
   - CharacterHealthBar
   - Enemy
   - Mark
+  - Revival
   layers:
   - Default
   - TransparentFX
