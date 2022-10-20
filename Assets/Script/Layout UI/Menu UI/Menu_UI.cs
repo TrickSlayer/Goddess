@@ -22,16 +22,20 @@ public class Menu_UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !PlayerManager.instance.statsP.wasDie)
+        if (!PlayerManager.instance.statsP.wasDie)
         {
-            ToggleInventory();
+            if (Input.GetKeyDown(KeyCode.Escape) && !PlayerManager.instance.statsP.wasDie)
+            {
+                ToggleInventory();
 
-            if (Show)
-            {
-                Pause();
-            } else
-            {
-                Resume();
+                if (Show)
+                {
+                    Pause();
+                }
+                else
+                {
+                    Resume();
+                }
             }
         }
     }

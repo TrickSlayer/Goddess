@@ -56,8 +56,10 @@ public class PlayerStats : CharacterStats
     public override void Die()
     {
         base.Die();
+        PlayerManager.instance.movementP.isHurt(true);
         wasDie = true;
+        Debug.Log(PlayerManager.instance.player.tag);
+        PlayerManager.instance.player.gameObject.tag = "Untagged";
         Revival_UI.instance.gameObject.SetActive(true);
-        Time.timeScale = 0;
     }
 }

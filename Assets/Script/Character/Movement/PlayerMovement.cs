@@ -22,9 +22,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Movement();
-
+        if (!PlayerManager.instance.statsP.wasDie)
+        {
+            Movement();
+        }
     }
 
     public void Movement()
@@ -71,6 +72,11 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
 
         jump = false;
+    }
+
+    public void isHurt(bool status)
+    {
+        animator.SetBool("isHurt", status);
     }
 
 }

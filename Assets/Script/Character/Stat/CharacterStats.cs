@@ -28,11 +28,7 @@ public class CharacterStats : MonoBehaviour
     {
         SetStartHealth();
         SetStartMana();
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            Die();
-        }
+        checkDie();
     }
 
     // Update is called once per frame
@@ -83,6 +79,11 @@ public class CharacterStats : MonoBehaviour
 
         HealthBar.SetValue(currentHealth);
 
+        checkDie();
+    }
+
+    private void checkDie()
+    {
         if (currentHealth <= 0)
         {
             currentHealth = 0;

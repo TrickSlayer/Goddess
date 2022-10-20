@@ -32,6 +32,8 @@ public class AttackRange : MonoBehaviour
     {
         RunAround();
 
+        CheckPlayerDie();
+
         if (changeTarget)
         {
             changeTarget = false;
@@ -52,6 +54,15 @@ public class AttackRange : MonoBehaviour
             {
                 Setter.target = Player.transform;
             }
+        }
+    }
+
+    void CheckPlayerDie()
+    {
+        if(Player.tag != "Player" && hasTarget)
+        {
+            hasTarget = false;
+            changeTarget = true;
         }
     }
 

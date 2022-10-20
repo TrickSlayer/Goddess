@@ -19,21 +19,25 @@ public class Sign : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inRange && Input.GetKeyDown(KeyCode.F))
+        if (!PlayerManager.instance.statsP.wasDie)
         {
-            if (dialogBox.activeInHierarchy)
+            if (inRange && Input.GetKeyDown(KeyCode.F))
+            {
+                if (dialogBox.activeInHierarchy)
+                {
+                    dialogBox.SetActive(false);
+                }
+                else
+                {
+                    dialogBox.SetActive(true);
+                    text.text = dialog;
+                }
+            }
+            else
+        if (dialogBox.activeInHierarchy && !inRange)
             {
                 dialogBox.SetActive(false);
-            } else
-            {
-                dialogBox.SetActive(true);
-                text.text = dialog;
             }
-        } 
-        else
-        if(dialogBox.activeInHierarchy && !inRange)
-        {
-            dialogBox.SetActive(false);
         }
     }
 
