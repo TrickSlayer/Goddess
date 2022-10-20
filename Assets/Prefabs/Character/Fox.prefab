@@ -290,23 +290,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health:
-    BaseValue: 0
+    BaseValue: 1500
   Mana:
-    BaseValue: 0
+    BaseValue: 1000
   Defense:
-    BaseValue: 0
+    BaseValue: 20
   Attack:
-    BaseValue: 0
+    BaseValue: 50
   CritRate:
-    BaseValue: 0
+    BaseValue: 10
   CritDamage:
-    BaseValue: 0
+    BaseValue: 50
   Dodge:
-    BaseValue: 0
-  movementMask:
-    serializedVersion: 2
-    m_Bits: 0
-  focus: {fileID: 0}
+    BaseValue: 5
+  HealthBar: {fileID: 0}
+  ManaBar: {fileID: 0}
 --- !u!114 &4758257287972224319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,66 +319,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory:
     slots:
-    - type: 0
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
-    - type: 0
+      icon: {fileID: 0}
+    - itemName: 
       count: 0
       maxAllowed: 0
+      icon: {fileID: 0}
+    needFresh: 0
+    newSlot:
+      itemName: 
+      count: 0
+      maxAllowed: 99
+      icon: {fileID: 0}
 --- !u!1 &6707787451749021583
 GameObject:
   m_ObjectHideFlags: 0

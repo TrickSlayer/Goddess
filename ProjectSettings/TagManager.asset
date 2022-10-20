@@ -7,6 +7,9 @@ TagManager:
   - HealBar
   - CharacterManaBar
   - CharacterHealthBar
+  - Enemy
+  - Mark
+  - Revival
   layers:
   - Default
   - TransparentFX
