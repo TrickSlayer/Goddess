@@ -8,6 +8,9 @@ TagManager:
   - CharacterManaBar
   - CharacterHealthBar
   - StarPos
+  - Enemy
+  - Mark
+  - Revival
   layers:
   - Default
   - TransparentFX

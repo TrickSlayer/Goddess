@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public ItemManager itemManager;
+    public PlayerManager playerManager;
     public ObjectPooler pooler;
 
     private void Awake()
@@ -22,6 +22,17 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
-        itemManager = GetComponent<ItemManager>();
+        playerManager = GetComponent<PlayerManager>();
     }
+
+    private void Start()
+    {
+        playerManager.LoadPlayer();
+    }
+
+    private void OnApplicationQuit()
+    {
+        playerManager.SavePlayer();
+    }
+
 }

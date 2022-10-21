@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4958723447544354782}
   - component: {fileID: 4958723447544354783}
   - component: {fileID: 5288797662717035705}
+  - component: {fileID: 468364098533872267}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -45,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5d984012eed0d4c8e795c67603d547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemManager: {fileID: 0}
-  pooler: {fileID: 0}
+  playerManager: {fileID: 468364098533872267}
+  pooler: {fileID: 5288797662717035705}
 --- !u!114 &5288797662717035705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,4 +60,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87cfea107918e5f4f89a11b8bf324664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools: []
+  pools:
+  - tag: Cherry
+    prefab: {fileID: 9010320892278987051, guid: 972c48b464589e541a857ac637d33a3f, type: 3}
+    size: 10
+  - tag: Gem
+    prefab: {fileID: 2447120973774520126, guid: f9c67e5eb76e2634abc4e88d7eb1ff69, type: 3}
+    size: 10
+  - tag: Mark
+    prefab: {fileID: 2296088205101726174, guid: 55f9aac8713aade4086343cfd8e0b124, type: 3}
+    size: 1
+--- !u!114 &468364098533872267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958723447544354781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9866b62687e099340af5e3c1b71d503e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

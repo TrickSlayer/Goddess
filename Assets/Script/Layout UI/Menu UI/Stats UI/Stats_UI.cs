@@ -35,7 +35,7 @@ public class Stats_UI : MonoBehaviour
             statList[2].setAttribute("Defense: " + playerStats.Defense.Value);
             statList[3].setAttribute("Attack: " + playerStats.Attack.Value);
             statList[4].setAttribute("Crit Rate: " + playerStats.CritRate.Value + "%");
-            statList[5].setAttribute("Crit Damage: " + playerStats.CritDamage.Value + "%");
+            statList[5].setAttribute("Crit Damage: " +  playerStats.CritDamage.Value + "%");
             statList[6].setAttribute("Dodge: " + playerStats.Dodge.Value + "%");
 
             ScoreText.text = "Score: " + Score;

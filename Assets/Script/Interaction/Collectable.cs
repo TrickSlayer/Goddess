@@ -1,11 +1,11 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Item))]
+[RequireComponent(typeof(Selectable))]
 public class Collectable : MonoBehaviour
 {
     [HideInInspector] bool clone = false;
 
-    private bool onGround = false;
     Rigidbody2D Rigidbody2D;
     Item Item;
 
@@ -14,7 +14,7 @@ public class Collectable : MonoBehaviour
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Item = GetComponent<Item>();
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
@@ -52,27 +52,14 @@ public class Collectable : MonoBehaviour
         }
         else
         {
-            onGround = true;
+            Rigidbody2D.velocity = Vector2.zero;
+            Rigidbody2D.gravityScale = 0;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
-        {
-            onGround = false;
-        }
-    }
-
-    private void Update()
-    {
-        if (onGround)
-        {
-            Rigidbody2D.velocity = Vector2.zero;
-            Rigidbody2D.gravityScale = 0;
-        }
-
-        if (!onGround)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Rigidbody2D.gravityScale = 1;
         }
