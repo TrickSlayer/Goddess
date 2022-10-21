@@ -7,6 +7,7 @@ TagManager:
   - HealBar
   - CharacterManaBar
   - CharacterHealthBar
+  - StarPos
   layers:
   - Default
   - TransparentFX
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1270661779
+    locked: 0
+  - name: Another background
+    uniqueID: 2075129455
     locked: 0
   - name: Character
     uniqueID: 2811891819

@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -72,5 +73,12 @@ public class PlayerMovement : MonoBehaviour
 
         jump = false;
     }
-
+    private void OnLevelWasLoaded(int level)
+    {
+        FindStartPos();
+    }
+    void FindStartPos()
+    {
+        transform.position = GameObject.FindWithTag("StarPos").transform.position;
+    }
 }
