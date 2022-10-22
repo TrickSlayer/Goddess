@@ -13,4 +13,5 @@ public class EnemyData : ScriptableObject
     public CharacterStat Defense;
     public CharacterStat Attack;
     public CharacterStat Dodge;
+    public int Experience;
 }

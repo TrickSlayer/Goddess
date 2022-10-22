@@ -47,6 +47,11 @@ public class PlayerManager : MonoBehaviour
         statsP.SetHealth(data.currentHealth);
         statsP.SetMana(data.currentMana);
 
+        statsP.currentExperience = data.currentExperience;
+        statsP.Level = data.Level;
+        statsP.Experience = data.Experience;
+        statsP.Score = data.Score;
+
         inventoryP.inventory.slots = data.getSlots();
 
         Vector3 position;

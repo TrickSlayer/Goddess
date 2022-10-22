@@ -20,6 +20,11 @@ public class PlayerData
     public int currentHealth;
     public int currentMana;
 
+    public int Level;
+    public int Score;
+    public CharacterStat Experience;
+    public int currentExperience;
+
     List<SlotTexture> inventorySlotTexture;
 
     public float[] position;
@@ -29,7 +34,8 @@ public class PlayerData
 
         Health = statsP.Health; Mana = statsP.Mana; Defense = statsP.Defense;
         Attack = statsP.Attack; CritRate = statsP.CritRate; CritDamage = statsP.CritDamage;
-        Dodge = statsP.Dodge;
+        Dodge = statsP.Dodge; Level = statsP.Level; Score = statsP.Score; 
+        Experience = statsP.Experience; currentExperience = statsP.currentExperience;
         currentHealth = statsP.currentHealth; currentMana = statsP.currentMana;
 
         inventorySlotTexture = getTextSlots(inventoryP.inventory.slots);

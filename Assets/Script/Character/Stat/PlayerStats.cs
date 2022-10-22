@@ -8,7 +8,8 @@ public class PlayerStats : CharacterStats
 {
     [HideInInspector] public static PlayerStats instance;
 
-    [HideInInspector] public CharacterStat Level = new CharacterStat(1);
+    [HideInInspector] public int Level = 1;
+    [HideInInspector] public int Score = 1;
     [HideInInspector] public CharacterStat Experience = new CharacterStat(100);
     [HideInInspector] public int currentExperience = 0;
 

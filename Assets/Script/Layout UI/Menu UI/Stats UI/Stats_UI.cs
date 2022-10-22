@@ -8,21 +8,38 @@ public class Stats_UI : MonoBehaviour
 {
     public List<Stat_UI> statList = new List<Stat_UI>();
     public List<GameObject> buttons = new List<GameObject> ();
-    public int Score = 0;
     private int preScore = 0;
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI LevelText;
+    public InformationBar experienceBar;
     [HideInInspector] public bool needFresh = true;
     [HideInInspector] PlayerStats playerStats;
+    public static Stats_UI instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        FreshLevel();
+    }
+
+    public void FreshLevel()
+    {
+        experienceBar.SetMaxValue(playerStats.Experience.Value);
+        experienceBar.SetValue(playerStats.currentExperience);
+        LevelText.text = "Level: " + playerStats.Level;
+        needFresh = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Score != preScore)
+        if (playerStats.Score != preScore)
         {
             needFresh = true;
         }
@@ -38,9 +55,9 @@ public class Stats_UI : MonoBehaviour
             statList[5].setAttribute("Crit Damage: " +  playerStats.CritDamage.Value + "%");
             statList[6].setAttribute("Dodge: " + playerStats.Dodge.Value + "%");
 
-            ScoreText.text = "Score: " + Score;
+            ScoreText.text = "Score: " + playerStats.Score;
 
-            if(Score == 0)
+            if(playerStats.Score == 0)
             {
                 foreach (var item in buttons)
                 {
@@ -54,7 +71,7 @@ public class Stats_UI : MonoBehaviour
                 }
             }
 
-            preScore = Score;
+            preScore = playerStats.Score;
         }
     }
 
@@ -99,6 +116,6 @@ public class Stats_UI : MonoBehaviour
     private void PowerUpComon()
     {
         needFresh = true;
-        Score--;
+        playerStats.Score--;
     }
 }

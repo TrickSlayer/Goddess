@@ -7141,6 +7141,8 @@ MonoBehaviour:
   - {fileID: 7925382868693842373}
   Score: 10
   ScoreText: {fileID: 5026270080470113871}
+  LevelText: {fileID: 7736036048995966748}
+  experienceBar: {fileID: 8782534360689767131}
   needFresh: 1
 --- !u!1 &7613596354257389060
 GameObject:

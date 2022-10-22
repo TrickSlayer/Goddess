@@ -87,6 +87,15 @@ public class Enemy : MonoBehaviour
     {
         gameObject.SetActive(false);
         data.currentHealth = data.Health.Value;
+        PlayerStats player = PlayerStats.instance;
+        player.currentExperience += data.Experience;
+        if(player.currentExperience >= player.Experience.Value)
+        {
+            player.currentExperience -= player.Experience.Value;
+            player.Level += 1;
+            player.Experience.AddModifier(new Goddess.PlayerStat.Stat(50,Goddess.PlayerStat.StatType.PercentMut));
+            player.Score += player.Level;
+        }
     }
 
 }
