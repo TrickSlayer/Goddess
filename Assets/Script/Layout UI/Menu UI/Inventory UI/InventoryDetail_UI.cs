@@ -78,7 +78,6 @@ public class InventoryDetail_UI : MonoBehaviour
             Inventory_UI.instance.UseItem(slotId);
             GameObject objectItem = ObjectPooler.instance
                 .GetGameObject(Name.text);
-            Debug.Log(objectItem.GetComponent<Item>());
             item = objectItem.GetComponent<Item>();
             PlayerStats.instance.OnEquipmentChanged(item, null);
         }

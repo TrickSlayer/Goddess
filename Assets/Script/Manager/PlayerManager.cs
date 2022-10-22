@@ -32,6 +32,8 @@ public class PlayerManager : MonoBehaviour
 
         if(data == null)
         {
+            statsP.SetHealth(statsP.Health.Value);
+            statsP.SetMana(statsP.Mana.Value);
             return;
         }
 

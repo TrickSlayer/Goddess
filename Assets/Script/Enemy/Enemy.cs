@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
         data.currentHealth = data.Health.Value;
     }
 
+    private void Update()
+    {
+    }
+
     private int Attack()
     {
         return data.Attack.Value;
@@ -22,31 +26,38 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Vector3 position = transform.position;
-            float directX = transform.position.x - collision.gameObject.transform.position.x;
-            Vector3 direct = new Vector3(directX, 2, 0);
-            transform.position =  position + direct;
-            if (canAttack())
+            Selectable selectable = GetComponent<Selectable>();
+            selectable.Selected();
+
+            GameObject player = collision.gameObject;
+
+            if (canAttack(player))
             {
-                PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
-                player.TakeDamage(Attack());
+                PlayerStats playerStats = player.GetComponent<PlayerStats>();
+                playerStats.TakeDamage(Attack());
 
-            } 
+            }
 
-            if (isAttacked())
+            if (isAttacked(player))
             {
                 TakeDamage(Attack());
             }
 
+            AfterTrigger(player);
         }
     }
 
-    protected virtual bool canAttack()
+    public virtual void AfterTrigger(GameObject player)
+    {
+
+    }
+
+    protected virtual bool canAttack(GameObject player)
     {
         return true;
     }
 
-    protected virtual bool isAttacked()
+    protected virtual bool isAttacked(GameObject player)
     {
         return true;
     }

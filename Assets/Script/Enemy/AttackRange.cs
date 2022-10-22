@@ -79,7 +79,6 @@ public class AttackRange : MonoBehaviour
                 countDown = timeRespawn;
             }
             countDown -= Time.deltaTime;
-            Debug.Log(countDown);
             if (countDown <= 0)
             {
                 transform.GetChild(0).gameObject.SetActive(true);

@@ -26,16 +26,11 @@ public class CharacterStats : MonoBehaviour
     {
         SetStartHealth();
         SetStartMana();
-        checkDie();
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            TakeDamage(20);
-        }
 
         if (Input.GetKeyDown(KeyCode.P))
         {

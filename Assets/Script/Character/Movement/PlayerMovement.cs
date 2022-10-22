@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!PlayerManager.instance.statsP.wasDie)
         {
             Movement();

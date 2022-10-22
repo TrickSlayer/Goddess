@@ -18,14 +18,19 @@ public class Selectable : MonoBehaviour
 
         if (dist < range)
         {
-            GameObject newSelection = ObjectPooler.instance.SpawnFromPool(
+            Selected();
+        }
+
+    }
+
+    public void Selected()
+    {
+        GameObject newSelection = ObjectPooler.instance.SpawnFromPool(
                 "Mark",
                 transform.GetChild(0).gameObject.transform.position,
                 Quaternion.identity
             );
-            newSelection.transform.SetParent(transform);
-        }
-
+        newSelection.transform.SetParent(transform);
     }
 
     private void Update()

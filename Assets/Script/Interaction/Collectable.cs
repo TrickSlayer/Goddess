@@ -19,6 +19,7 @@ public class Collectable : MonoBehaviour
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
         {
+            if (clone) return;
 
             PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
 
@@ -46,6 +47,7 @@ public class Collectable : MonoBehaviour
                 }
 
                 this.gameObject.SetActive(false);
+                clone = true;
             }
         }
         else
