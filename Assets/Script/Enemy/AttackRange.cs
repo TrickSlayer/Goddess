@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AttackRange : MonoBehaviour
 {
+    public float timeRespawn = 30f;
+    float countDown;
     GameObject Enemy;
     GameObject LeftTarget;
     GameObject RightTarget;
@@ -33,6 +35,8 @@ public class AttackRange : MonoBehaviour
         RunAround();
 
         CheckPlayerDie();
+
+        CheckEnemyDie();
 
         if (changeTarget)
         {
@@ -63,6 +67,23 @@ public class AttackRange : MonoBehaviour
         {
             hasTarget = false;
             changeTarget = true;
+        }
+    }
+
+    void CheckEnemyDie()
+    {
+        if (!transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            if(countDown <= 0)
+            {
+                countDown = timeRespawn;
+            }
+            countDown -= Time.deltaTime;
+            Debug.Log(countDown);
+            if (countDown <= 0)
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
         }
     }
 

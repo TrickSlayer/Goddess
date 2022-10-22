@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
         if (!PlayerManager.instance.statsP.wasDie)
         {
             Movement();
+        } else
+        {
+            horizontalMove = 0f;
         }
     }
 

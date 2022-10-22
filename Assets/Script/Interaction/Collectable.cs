@@ -19,20 +19,18 @@ public class Collectable : MonoBehaviour
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
         {
-            if (clone) return;
 
             PlayerStats player = collision.gameObject.GetComponent<PlayerStats>();
 
             if (player)
             {
-                clone = true;
 
-                if (player.Health.Value < player.currentHealth && Item.data.recoverHealth != 0)
+                if (player.Health.Value > player.currentHealth && Item.data.recoverHealth != 0)
                 {
                     player.OnEquipmentChanged(Item, null);
                 } 
                 else
-                if (player.Mana.Value != player.currentMana && Item.data.recoverMana != 0)
+                if (player.Mana.Value > player.currentMana && Item.data.recoverMana != 0)
                 {
                     player.OnEquipmentChanged(Item, null);
                 }

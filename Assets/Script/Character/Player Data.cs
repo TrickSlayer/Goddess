@@ -28,7 +28,8 @@ public class PlayerData
     {
 
         Health = statsP.Health; Mana = statsP.Mana; Defense = statsP.Defense;
-        Attack = statsP.Attack; CritRate = statsP.CritRate; Dodge = statsP.Dodge;
+        Attack = statsP.Attack; CritRate = statsP.CritRate; CritDamage = statsP.CritDamage;
+        Dodge = statsP.Dodge;
         currentHealth = statsP.currentHealth; currentMana = statsP.currentMana;
 
         inventorySlotTexture = getTextSlots(inventoryP.inventory.slots);

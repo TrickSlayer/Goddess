@@ -8,6 +8,12 @@ public class PlayerStats : CharacterStats
 {
     [HideInInspector] public static PlayerStats instance;
 
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -25,26 +31,41 @@ public class PlayerStats : CharacterStats
     {
         if (newItem != null)
         {
+
             Health.AddModifier(newItem.data.Health);
+
             Mana.AddModifier(newItem.data.Mana);
+
             Defense.AddModifier(newItem.data.Defense);
+
             Attack.AddModifier(newItem.data.Attack);
-            CritRate.AddModifier(newItem.data.CritRate);
-            CritDamage.AddModifier(newItem.data.CritDamage);
+
             Dodge.AddModifier(newItem.data.Dodge);
+
+            CritRate.AddModifier(newItem.data.CritRate);
+
+            CritDamage.AddModifier(newItem.data.CritDamage);
+
             RecoverHealth(newItem.data.recoverHealth);
             RecoverMana(newItem.data.recoverMana);
         }
 
         if (oldItem != null)
         {
-            Health.RemoveModifier(oldItem.data.Health);
-            Mana.RemoveModifier(oldItem.data.Mana);
-            Defense.RemoveModifier(oldItem.data.Defense);
-            Attack.RemoveModifier(oldItem.data.Attack);
-            CritRate.RemoveModifier(oldItem.data.CritRate);
-            CritDamage.RemoveModifier(oldItem.data.CritDamage);
-            Dodge.RemoveModifier(oldItem.data.Dodge);
+
+            Health.RemoveModifier(newItem.data.Health);
+
+            Mana.RemoveModifier(newItem.data.Mana);
+
+            Defense.RemoveModifier(newItem.data.Defense);
+
+            Attack.RemoveModifier(newItem.data.Attack);
+
+            CritRate.RemoveModifier(newItem.data.CritRate);
+
+            CritDamage.RemoveModifier(newItem.data.CritDamage);
+
+            Dodge.RemoveModifier(newItem.data.Dodge);
         }
 
         SetStartHealth();
