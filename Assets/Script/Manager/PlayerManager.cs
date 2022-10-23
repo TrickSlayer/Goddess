@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,10 +17,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        player = gameObject;
-        inventoryP = player.GetComponent<PlayerInventory>();
-        statsP = player.GetComponent<PlayerStats>();
-        movementP = player.GetComponent<PlayerMovement>();
 
         if (instance != null && instance != this)
         {
@@ -31,10 +28,16 @@ public class PlayerManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        player = gameObject;
+        inventoryP = player.GetComponent<PlayerInventory>();
+        statsP = player.GetComponent<PlayerStats>();
+        movementP = player.GetComponent<PlayerMovement>();
     }
 
     private void Start()
     {
+
     }
 
     public void SavePlayer()
@@ -80,6 +83,11 @@ public class PlayerManager : MonoBehaviour
 
         player.transform.position = position;
 
+    }
+
+    public void SetPosition(Vector3 position)
+    {
+        player.transform.position = position;
     }
 
 }

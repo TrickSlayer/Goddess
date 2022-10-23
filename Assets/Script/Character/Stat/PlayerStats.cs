@@ -8,10 +8,10 @@ public class PlayerStats : CharacterStats
 {
     [HideInInspector] public static PlayerStats instance;
 
-    [HideInInspector] public int Level = 1;
-    [HideInInspector] public int Score = 1;
-    [HideInInspector] public CharacterStat Experience = new CharacterStat(100);
-    [HideInInspector] public int currentExperience = 0;
+    public int Level = 1;
+    public int Score = 1;
+    public CharacterStat Experience = new CharacterStat(100);
+    public int currentExperience = 0;
 
     private void Awake()
     {

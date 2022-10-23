@@ -9,6 +9,7 @@ public class Stats_UI : MonoBehaviour
     public List<Stat_UI> statList = new List<Stat_UI>();
     public List<GameObject> buttons = new List<GameObject> ();
     private int preScore = 0;
+    private int preExp = 0;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI LevelText;
     public InformationBar experienceBar;
@@ -49,6 +50,12 @@ public class Stats_UI : MonoBehaviour
         if (playerStats.Score != preScore)
         {
             needFresh = true;
+        }
+
+        if(playerStats.currentExperience != preExp)
+        {
+            preExp = playerStats.currentExperience;
+            FreshLevel();
         }
 
         if (needFresh)

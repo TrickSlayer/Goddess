@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Revival_UI : MonoBehaviour
 {
     public static Revival_UI instance;
     [HideInInspector] GameObject revivalPoint;
+
+    PlayerManager playerManager;
 
     private void Awake()
     {
@@ -18,17 +21,26 @@ public class Revival_UI : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    private void Start()
+    {
         revivalPoint = GameObject.FindGameObjectWithTag("Revival");
+        playerManager = PlayerManager.instance;
     }
 
     public void Revival()
     {
-        PlayerManager.instance.statsP.wasDie = false;
+        playerManager.statsP.wasDie = false;
         gameObject.SetActive(false);
-        PlayerManager.instance.statsP.RecoverHealth(PlayerManager.instance.statsP.Health.Value);
-        PlayerManager.instance.statsP.RecoverMana(PlayerManager.instance.statsP.Mana.Value);
-        PlayerManager.instance.player.transform.position = revivalPoint.transform.position;
-        PlayerManager.instance.movementP.isHurt(false);
-        PlayerManager.instance.player.tag = "Player";
+
+        PlayerStats stats = playerManager.statsP;
+        stats.RecoverHealth(stats.Health.Value);
+        stats.RecoverMana(stats.Mana.Value);
+
+        playerManager.movementP.isHurt(false);
+        playerManager.player.tag = "Player";
+
+        playerManager.SetPosition(revivalPoint.transform.position);
     }
 }
