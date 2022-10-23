@@ -10,38 +10,50 @@ public class Inventory_UI : MonoBehaviour
     public List<Slot_UI> slots = new List<Slot_UI>();
     public GameObject detailPanel;
     [HideInInspector] public static Inventory_UI instance;
+    [HideInInspector] Inventory inventory;
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
         detailPanel.SetActive(false);
-        InventoryDetail_UI.instance = detailPanel.GetComponent<InventoryDetail_UI>();
+    }
+
+    private void Start()
+    {
+        inventory = PlayerManager.instance.inventoryP.inventory;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Menu_UI.instance.Show && PlayerInventory.instance.inventory.needFresh)
+        if (inventory.needFresh)
         {
             Refresh();
 
-            if (PlayerInventory.instance.inventory.newSlot == InventoryDetail_UI.instance.inventorySlot)
+            if (inventory.newSlot == InventoryDetail_UI.instance.inventorySlot)
             {
-                PlayerInventory.instance.inventory.newSlot = null;
-                RefreshDetail(PlayerInventory.instance.inventory.slots[InventoryDetail_UI.instance.slotId]);
+                inventory.newSlot = null;
+                RefreshDetail(inventory.slots[InventoryDetail_UI.instance.slotId]);
             }
         }
     }
 
-    void Refresh()
+    public void Refresh()
     {
-        if (slots.Count == PlayerInventory.instance.inventory.slots.Count)
+        if (slots.Count == inventory.slots.Count)
         {
             for (int i = 0; i < slots.Count; i++)
             {
-                if (PlayerInventory.instance.inventory.slots[i].itemName != "")
+                if (inventory.slots[i].itemName != "")
                 {
-                    slots[i].SetItem(PlayerInventory.instance.inventory.slots[i]);
+                    slots[i].SetItem(inventory.slots[i]);
                 }
                 else
                 {
@@ -49,7 +61,7 @@ public class Inventory_UI : MonoBehaviour
                 }
             }
         }
-        PlayerInventory.instance.inventory.needFresh = false;
+        inventory.needFresh = false;
     }
 
     void RefreshDetail(Inventory.Slot slot)
@@ -63,7 +75,7 @@ public class Inventory_UI : MonoBehaviour
     private Item getItemDrop(int slotId)
     {
         GameObject objectItem = ObjectPooler.instance.GetGameObject(
-            PlayerInventory.instance.inventory.slots[slotId].itemName);
+            inventory.slots[slotId].itemName);
 
         Item itemToDrop = objectItem.GetComponent<Item>();
 
@@ -77,14 +89,14 @@ public class Inventory_UI : MonoBehaviour
         if (itemToDrop != null)
         {
             PlayerInventory.instance.DropItem(itemToDrop);
-            PlayerInventory.instance.inventory.Remove(slotId);
+            inventory.Remove(slotId);
             Refresh();
             if (slots[slotId].quantityText.text == "")
             {
                 InventoryDetail_UI.instance.inventorySlot = null;
                 detailPanel.SetActive(false);
             }
-            RefreshDetail(PlayerInventory.instance.inventory.slots[slotId]);
+            RefreshDetail(inventory.slots[slotId]);
         }
 
     }
@@ -99,19 +111,19 @@ public class Inventory_UI : MonoBehaviour
             while (quantity-- > 0)
             {
                 PlayerInventory.instance.DropItem(itemToDrop);
-                PlayerInventory.instance.inventory.Remove(slotId);
+                inventory.Remove(slotId);
             }
             Refresh();
             InventoryDetail_UI.instance.inventorySlot = null;
             detailPanel.SetActive(false);
-            RefreshDetail(PlayerInventory.instance.inventory.slots[slotId]);
+            RefreshDetail(inventory.slots[slotId]);
         }
 
     }
 
     public void Selected(int slotId)
     {
-        Inventory.Slot slot = PlayerInventory.instance.inventory.slots[slotId];
+        Inventory.Slot slot = inventory.slots[slotId];
 
         if (slot == InventoryDetail_UI.instance.inventorySlot)
         {
@@ -141,14 +153,14 @@ public class Inventory_UI : MonoBehaviour
 
         if (itemToDrop != null)
         {
-            PlayerInventory.instance.inventory.Remove(slotId);
+            inventory.Remove(slotId);
             Refresh();
             if (slots[slotId].quantityText.text == "")
             {
                 InventoryDetail_UI.instance.inventorySlot = null;
                 detailPanel.SetActive(false);
             }
-            RefreshDetail(PlayerInventory.instance.inventory.slots[slotId]);
+            RefreshDetail(inventory.slots[slotId]);
         }
     }
 

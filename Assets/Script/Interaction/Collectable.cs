@@ -8,13 +8,19 @@ public class Collectable : MonoBehaviour
 
     Rigidbody2D Rigidbody2D;
     Item Item;
+    Inventory inventory;
 
     private void Awake()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Item = GetComponent<Item>();
     }
-    
+
+    private void Start()
+    {
+        inventory = PlayerInventory.instance.inventory;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
@@ -37,11 +43,10 @@ public class Collectable : MonoBehaviour
                 }
                 else
                 {
-                    PlayerInventory playerInv = collision.gameObject.GetComponent<PlayerInventory>();
 
                     if (Item != null)
                     {
-                        playerInv.inventory.Add(Item);
+                        inventory.Add(Item);
                     }
 
                 }

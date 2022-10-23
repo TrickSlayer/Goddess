@@ -15,7 +15,14 @@ public class PlayerStats : CharacterStats
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     // Start is called before the first frame update
@@ -81,6 +88,7 @@ public class PlayerStats : CharacterStats
     public override void Die()
     {
         base.Die();
+        currentExperience = 0;
         PlayerManager.instance.movementP.isHurt(true);
         wasDie = true;
         PlayerManager.instance.player.gameObject.tag = "Untagged";

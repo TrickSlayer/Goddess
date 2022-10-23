@@ -18,7 +18,14 @@ public class InventoryDetail_UI : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     public bool SetItem(Inventory.Slot inventorySlot)

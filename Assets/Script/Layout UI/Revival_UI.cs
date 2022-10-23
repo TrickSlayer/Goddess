@@ -10,7 +10,14 @@ public class Revival_UI : MonoBehaviour
     private void Awake()
     {
         gameObject.SetActive(false);
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
         revivalPoint = GameObject.FindGameObjectWithTag("Revival");
     }
 

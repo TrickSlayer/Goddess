@@ -98,14 +98,6 @@ public class Enemy : MonoBehaviour
             player.Score += player.Level;
         }
 
-        try
-        {
-            Stats_UI.instance.FreshLevel();
-        } catch(Exception e)
-        {
-            Debug.LogWarning(e);
-        }
-
         GameObject Player = PlayerManager.instance.player;
         GameObject newSelection = ObjectPooler.instance.SpawnFromPool("Mark", Player.transform.position, Quaternion.identity);
         newSelection.transform.SetParent(Player.transform);

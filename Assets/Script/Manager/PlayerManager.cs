@@ -10,8 +10,6 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public PlayerMovement movementP;
     [HideInInspector] public GameObject player;
 
-    private GameObject[] players;
-
     // Start is called before the first frame update
 
     public static PlayerManager instance;
@@ -71,6 +69,7 @@ public class PlayerManager : MonoBehaviour
         statsP.Score = data.Score;
 
         inventoryP.inventory.slots = data.getSlots();
+        inventoryP.inventory.needFresh = true;
 
         SceneManager.LoadScene(data.map);
 

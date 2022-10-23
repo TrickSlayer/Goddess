@@ -10,7 +10,15 @@ public class PlayerInventory : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+
         inventory = new Inventory(21);
     }
 
