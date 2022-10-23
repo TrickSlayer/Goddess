@@ -19,7 +19,16 @@ public class ObjectPooler : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+
+        DontDestroyOnLoad(this.gameObject);
     }
     #endregion
 
@@ -29,7 +38,7 @@ public class ObjectPooler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPool();
+        //SpawnPool();
     }
 
     public void SpawnPool()

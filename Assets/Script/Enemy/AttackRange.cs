@@ -34,29 +34,39 @@ public class AttackRange : MonoBehaviour
     {
         RunAround();
 
-        CheckPlayerDie();
-
-        CheckEnemyDie();
-
-        if (changeTarget)
+        if (Player == null)
         {
-            changeTarget = false;
-            if (!hasTarget)
+            Player = GameObject.FindGameObjectWithTag("Player");
+        }
+        else
+        {
+
+            CheckPlayerDie();
+
+            CheckEnemyDie();
+
+            if (changeTarget)
             {
-                if (right)
+                changeTarget = false;
+                if (!hasTarget)
                 {
-                    position = RightTarget.transform.position;
-                    Setter.target = RightTarget.transform;
-                    right = false;
-                } else
-                {
-                    position = LeftTarget.transform.position;
-                    Setter.target = LeftTarget.transform;
-                    right = true;
+                    if (right)
+                    {
+                        position = RightTarget.transform.position;
+                        Setter.target = RightTarget.transform;
+                        right = false;
+                    }
+                    else
+                    {
+                        position = LeftTarget.transform.position;
+                        Setter.target = LeftTarget.transform;
+                        right = true;
+                    }
                 }
-            } else
-            {
-                Setter.target = Player.transform;
+                else
+                {
+                    Setter.target = Player.transform;
+                }
             }
         }
     }

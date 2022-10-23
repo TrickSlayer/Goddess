@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c5d96b86233a64d9a0d82b2cbad8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeRespawn: 30
 --- !u!1 &5786508091356359737
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +225,26 @@ PrefabInstance:
     - target: {fileID: 2811934031837977179, guid: a942356bf042bdf47a999bb516e78726, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3850372414325241614, guid: a942356bf042bdf47a999bb516e78726, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215988355496562673, guid: a942356bf042bdf47a999bb516e78726, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390682009339081718, guid: a942356bf042bdf47a999bb516e78726, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390682009339081718, guid: a942356bf042bdf47a999bb516e78726, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1647247539
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627299191761389141, guid: a942356bf042bdf47a999bb516e78726, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a942356bf042bdf47a999bb516e78726, type: 3}

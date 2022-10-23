@@ -368,11 +368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2922667606102306556, guid: 0a4e0bcd27be4384db6aa285d9f7eb9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.895416
+      value: -4.3999996
       objectReference: {fileID: 0}
     - target: {fileID: 2922667606102306556, guid: 0a4e0bcd27be4384db6aa285d9f7eb9f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.0000005
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2922667606102306556, guid: 0a4e0bcd27be4384db6aa285d9f7eb9f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3843,9 +3843,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4958723447544354783, guid: 900c0c7595555f243a06587cfba71173, type: 3}
+      propertyPath: pooler
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958723447544354783, guid: 900c0c7595555f243a06587cfba71173, type: 3}
       propertyPath: playerManager
       value: 
       objectReference: {fileID: 1836752310}
+    - target: {fileID: 5288797662717035705, guid: 900c0c7595555f243a06587cfba71173, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 900c0c7595555f243a06587cfba71173, type: 3}
 --- !u!1 &1991417146 stripped

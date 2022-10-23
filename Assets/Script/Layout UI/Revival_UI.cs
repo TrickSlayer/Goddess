@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Revival_UI : MonoBehaviour
 {
@@ -25,12 +27,24 @@ public class Revival_UI : MonoBehaviour
 
     private void Start()
     {
-        revivalPoint = GameObject.FindGameObjectWithTag("Revival");
         playerManager = PlayerManager.instance;
     }
 
     public void Revival()
     {
+        StartCoroutine(LoadScreenRevival());
+    }
+
+    public IEnumerator LoadScreenRevival()
+    {
+        var asyncLoadLevel = SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+
+        while (!asyncLoadLevel.isDone)
+        {
+            Debug.Log("Loading the Scene");
+            yield return null;
+        }
+
         playerManager.statsP.wasDie = false;
         gameObject.SetActive(false);
 
@@ -41,6 +55,8 @@ public class Revival_UI : MonoBehaviour
         playerManager.movementP.isHurt(false);
         playerManager.player.tag = "Player";
 
+        revivalPoint = GameObject.FindGameObjectWithTag("Revival");
         playerManager.SetPosition(revivalPoint.transform.position);
+
     }
 }
