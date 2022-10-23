@@ -21,6 +21,7 @@ public class Revival_UI : MonoBehaviour
         PlayerManager.instance.statsP.RecoverHealth(PlayerManager.instance.statsP.Health.Value);
         PlayerManager.instance.statsP.RecoverMana(PlayerManager.instance.statsP.Mana.Value);
         PlayerManager.instance.player.transform.position = revivalPoint.transform.position;
-        Time.timeScale = 1f;
+        PlayerManager.instance.movementP.isHurt(false);
+        PlayerManager.instance.player.tag = "Player";
     }
 }

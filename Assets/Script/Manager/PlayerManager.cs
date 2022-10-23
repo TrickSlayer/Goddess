@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -8,17 +9,34 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public PlayerStats statsP;
     [HideInInspector] public PlayerMovement movementP;
     [HideInInspector] public GameObject player;
+
+    private GameObject[] players;
+
     // Start is called before the first frame update
 
     public static PlayerManager instance;
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = gameObject;
         inventoryP = player.GetComponent<PlayerInventory>();
         statsP = player.GetComponent<PlayerStats>();
         movementP = player.GetComponent<PlayerMovement>();
-        instance = this;
+
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    private void Start()
+    {
     }
 
     public void SavePlayer()
@@ -32,6 +50,8 @@ public class PlayerManager : MonoBehaviour
 
         if(data == null)
         {
+            statsP.SetHealth(statsP.Health.Value);
+            statsP.SetMana(statsP.Mana.Value);
             return;
         }
 
@@ -45,7 +65,14 @@ public class PlayerManager : MonoBehaviour
         statsP.SetHealth(data.currentHealth);
         statsP.SetMana(data.currentMana);
 
+        statsP.currentExperience = data.currentExperience;
+        statsP.Level = data.Level;
+        statsP.Experience = data.Experience;
+        statsP.Score = data.Score;
+
         inventoryP.inventory.slots = data.getSlots();
+
+        SceneManager.LoadScene(data.map);
 
         Vector3 position;
         position.x = data.position[0];
@@ -56,5 +83,4 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    
 }

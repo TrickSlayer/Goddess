@@ -27,7 +27,6 @@ public class EmptyObject : MonoBehaviour
             /* EmptyObject empObj = empty.GetComponent<EmptyObject>();
              empObj.changePosition(position);*/
         }
-        Debug.Log(gameObject.transform.position);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

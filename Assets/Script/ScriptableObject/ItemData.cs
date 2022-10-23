@@ -12,12 +12,12 @@ public class ItemData : ScriptableObject
     public string description = "";
     public int recoverHealth = 0;
     public int recoverMana = 0;
-    public List<Stat> Health;
-    public List<Stat> Mana;
-    public List<Stat> Defense;
-    public List<Stat> Attack;
-    public List<Stat> CritRate;
-    public List<Stat> CritDamage;
-    public List<Stat> Dodge;
+    public List<Stat> Health = new List<Stat>();
+    public List<Stat> Mana = new List<Stat>();
+    public List<Stat> Defense = new List<Stat>();
+    public List<Stat> Attack = new List<Stat>();
+    public List<Stat> CritRate = new List<Stat>();
+    public List<Stat> CritDamage = new List<Stat>();
+    public List<Stat> Dodge = new List<Stat>();
 
 }

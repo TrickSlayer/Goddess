@@ -17,15 +17,19 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        Movement();
-
+        if (!PlayerManager.instance.statsP.wasDie)
+        {
+            Movement();
+        } else
+        {
+            horizontalMove = 0f;
+        }
     }
 
     public void Movement()
@@ -73,12 +77,10 @@ public class PlayerMovement : MonoBehaviour
 
         jump = false;
     }
-    private void OnLevelWasLoaded(int level)
+
+    public void isHurt(bool status)
     {
-        FindStartPos();
+        animator.SetBool("isHurt", status);
     }
-    void FindStartPos()
-    {
-        transform.position = GameObject.FindWithTag("StarPos").transform.position;
-    }
+
 }

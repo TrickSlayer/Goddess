@@ -20,18 +20,29 @@ public class PlayerData
     public int currentHealth;
     public int currentMana;
 
+    public int Level;
+    public int Score;
+    public CharacterStat Experience;
+    public int currentExperience;
+
+    public String map;
+
     List<SlotTexture> inventorySlotTexture;
 
     public float[] position;
 
-    public PlayerData(PlayerStats statsP, PlayerInventory inventoryP, PlayerMovement movementP)
+    public PlayerData(PlayerStats statsP, PlayerInventory inventoryP, PlayerMovement movementP, String map)
     {
 
         Health = statsP.Health; Mana = statsP.Mana; Defense = statsP.Defense;
-        Attack = statsP.Attack; CritRate = statsP.CritRate; Dodge = statsP.Dodge;
+        Attack = statsP.Attack; CritRate = statsP.CritRate; CritDamage = statsP.CritDamage;
+        Dodge = statsP.Dodge; Level = statsP.Level; Score = statsP.Score; 
+        Experience = statsP.Experience; currentExperience = statsP.currentExperience;
         currentHealth = statsP.currentHealth; currentMana = statsP.currentMana;
 
         inventorySlotTexture = getTextSlots(inventoryP.inventory.slots);
+
+        this.map = map;
 
         position = new float[3];
         position[0] = movementP.transform.position.x;

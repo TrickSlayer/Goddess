@@ -32,8 +32,9 @@ public class EnemyInformation_UI : MonoBehaviour
                     if(Selected.GetInstanceID() == newSelected.GetInstanceID())
                     {
                         Selected = newSelected;
-                        Name.text = Selected.name;
-                        Health.text = "1000/1000";
+                        Enemy enemy = Selected.GetComponent<Enemy>();
+                        Name.text = enemy.data.enemyName;
+                        Health.text = enemy.data.currentHealth + "/" + enemy.data.Health.Value;
                     }
 
                 }

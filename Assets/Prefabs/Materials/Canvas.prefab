@@ -1315,9 +1315,10 @@ GameObject:
   - component: {fileID: 6487849826205401191}
   - component: {fileID: 4264304495488588361}
   - component: {fileID: 8818680413627582095}
+  - component: {fileID: 4893256375964453871}
   m_Layer: 5
   m_Name: Dialog Box
-  m_TagString: Untagged
+  m_TagString: Dialog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1381,6 +1382,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4893256375964453871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201221910664198188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3efd0bcfcdfdb14cb23cd37f217c4d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 8577176930999853650}
+  dialog: New Game??
 --- !u!1 &1515808611759505908
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,9 +3343,10 @@ GameObject:
   - component: {fileID: 3427659621960796431}
   - component: {fileID: 3427659621960796430}
   - component: {fileID: 3427659621960796425}
+  - component: {fileID: 8815941418851179490}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3420,6 +3436,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8815941418851179490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3427659621960796424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90bf5dfc67ace6049af1d9a4d1de51b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog: {fileID: 1201221910664198188}
 --- !u!1 &3427659622083077715
 GameObject:
   m_ObjectHideFlags: 0
@@ -7139,8 +7168,9 @@ MonoBehaviour:
   - {fileID: 4516065358347136765}
   - {fileID: 2893079565083830312}
   - {fileID: 7925382868693842373}
-  Score: 10
   ScoreText: {fileID: 5026270080470113871}
+  LevelText: {fileID: 7736036048995966748}
+  experienceBar: {fileID: 8782534360689767131}
   needFresh: 1
 --- !u!1 &7613596354257389060
 GameObject:
