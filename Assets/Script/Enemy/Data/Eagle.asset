@@ -22,3 +22,4 @@ MonoBehaviour:
     BaseValue: 30
   Dodge:
     BaseValue: 20
+  Experience: 50

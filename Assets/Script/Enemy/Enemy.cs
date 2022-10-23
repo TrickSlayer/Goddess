@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,7 +41,7 @@ public class Enemy : MonoBehaviour
 
             if (isAttacked(player))
             {
-                TakeDamage(Attack());
+                TakeDamage(PlayerStats.instance.AttackEnemy());
             }
 
             AfterTrigger(player);
@@ -76,7 +77,7 @@ public class Enemy : MonoBehaviour
 
         data.currentHealth -= Mathf.Clamp(damage, 0, int.MaxValue);
 
-        if(data.currentHealth <= 0)
+        if (data.currentHealth <= 0)
         {
             data.currentHealth = 0;
             Die();
@@ -89,13 +90,26 @@ public class Enemy : MonoBehaviour
         data.currentHealth = data.Health.Value;
         PlayerStats player = PlayerStats.instance;
         player.currentExperience += data.Experience;
-        if(player.currentExperience >= player.Experience.Value)
+        if (player.currentExperience >= player.Experience.Value)
         {
             player.currentExperience -= player.Experience.Value;
             player.Level += 1;
-            player.Experience.AddModifier(new Goddess.PlayerStat.Stat(50,Goddess.PlayerStat.StatType.PercentMut));
+            player.Experience.AddModifier(new Goddess.PlayerStat.Stat(50, Goddess.PlayerStat.StatType.PercentMut));
             player.Score += player.Level;
         }
+
+        try
+        {
+            Stats_UI.instance.FreshLevel();
+        } catch(Exception e)
+        {
+            Debug.LogWarning(e);
+        }
+
+        GameObject Player = PlayerManager.instance.player;
+        GameObject newSelection = ObjectPooler.instance.SpawnFromPool("Mark", Player.transform.position, Quaternion.identity);
+        newSelection.transform.SetParent(Player.transform);
+        newSelection.SetActive(false);
     }
 
 }

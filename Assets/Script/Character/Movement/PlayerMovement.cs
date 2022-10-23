@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
-        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -84,13 +83,4 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isHurt", status);
     }
 
-    private void OnLevelWasLoaded(int level)
-    {
-        FindStartPos();
-    }
-    
-    void FindStartPos()
-    {
-        transform.position = GameObject.FindWithTag("StarPos").transform.position;
-    }
 }

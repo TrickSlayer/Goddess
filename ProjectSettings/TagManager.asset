@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Mark
   - Revival
+  - UI
+  - Dialog
   layers:
   - Default
   - TransparentFX
