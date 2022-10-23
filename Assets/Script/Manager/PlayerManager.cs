@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -70,6 +71,8 @@ public class PlayerManager : MonoBehaviour
         statsP.Score = data.Score;
 
         inventoryP.inventory.slots = data.getSlots();
+
+        SceneManager.LoadScene(data.map);
 
         Vector3 position;
         position.x = data.position[0];

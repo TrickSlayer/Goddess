@@ -13,8 +13,9 @@ public class GameManager : MonoBehaviour
     public PlayerManager playerManager;
     public ObjectPooler pooler;
 
-    public List<string> SceneHasPool = new List<string>();
-    public string currentScene;
+    private List<string> SceneHasPool = new List<string>();
+    [HideInInspector] public string preScene;
+    [HideInInspector] public string currentScene;
     private bool newScene = false;
 
     private void Awake()
@@ -35,8 +36,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         playerManager.LoadPlayer();
+        CameraManager.instance.AddContraintCamera();
 
         currentScene = SceneManager.GetActiveScene().name;
+        preScene = currentScene;
         SceneHasPool.Add(currentScene);
     }
 
@@ -44,10 +47,20 @@ public class GameManager : MonoBehaviour
     {
         currentScene = SceneManager.GetActiveScene().name;
         AddListScene(currentScene);
+
         if (newScene)
         {
             pooler.SpawnPool();
         }
+
+        GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StarPos");
+        GameObject startPoint = startPoints.FirstOrDefault(x => x.name.Equals(preScene));
+        preScene = currentScene;
+        if (startPoint != null)
+        {
+            playerManager.player.transform.position = startPoint.transform.position;
+        }
+        CameraManager.instance.AddContraintCamera();
     }
 
     private void OnApplicationQuit()
@@ -67,7 +80,6 @@ public class GameManager : MonoBehaviour
         {
             newScene = false;
         }
-        playerManager.player.transform.position = GameObject.FindWithTag("StarPos").transform.position;
     }
 
 

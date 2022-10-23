@@ -2500,6 +2500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Back Ground Beach
       objectReference: {fileID: 0}
+    - target: {fileID: 1239449430902641446, guid: 4c2113dd66d1d3f43a68aad1e6f82a4c, type: 3}
+      propertyPath: m_TagString
+      value: Background
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c2113dd66d1d3f43a68aad1e6f82a4c, type: 3}
 --- !u!60 &1561832683 stripped
@@ -3864,7 +3868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4958723447544354782, guid: 900c0c7595555f243a06587cfba71173, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4958723447544354782, guid: 900c0c7595555f243a06587cfba71173, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3991,11 +3995,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 832281237620024860, guid: a30def76c69123643b406bfef29b6986, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.43
+      value: 12.78
       objectReference: {fileID: 0}
     - target: {fileID: 832281237620024860, guid: a30def76c69123643b406bfef29b6986, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.07
+      value: 2.15
       objectReference: {fileID: 0}
     - target: {fileID: 832281237620024860, guid: a30def76c69123643b406bfef29b6986, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4316,15 +4320,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2246369409728871230, guid: 61a810f1d3ba255448b88b9bd05fb2eb, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2246369409728871230, guid: 61a810f1d3ba255448b88b9bd05fb2eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.2
+      value: 7.61
       objectReference: {fileID: 0}
     - target: {fileID: 2246369409728871230, guid: 61a810f1d3ba255448b88b9bd05fb2eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8
+      value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: 2246369409728871230, guid: 61a810f1d3ba255448b88b9bd05fb2eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4360,7 +4364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7076592387392050525, guid: 61a810f1d3ba255448b88b9bd05fb2eb, type: 3}
       propertyPath: m_Name
-      value: StartPostion
+      value: Desertmap
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61a810f1d3ba255448b88b9bd05fb2eb, type: 3}

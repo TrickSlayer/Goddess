@@ -25,11 +25,13 @@ public class PlayerData
     public CharacterStat Experience;
     public int currentExperience;
 
+    public String map;
+
     List<SlotTexture> inventorySlotTexture;
 
     public float[] position;
 
-    public PlayerData(PlayerStats statsP, PlayerInventory inventoryP, PlayerMovement movementP)
+    public PlayerData(PlayerStats statsP, PlayerInventory inventoryP, PlayerMovement movementP, String map)
     {
 
         Health = statsP.Health; Mana = statsP.Mana; Defense = statsP.Defense;
@@ -39,6 +41,8 @@ public class PlayerData
         currentHealth = statsP.currentHealth; currentMana = statsP.currentMana;
 
         inventorySlotTexture = getTextSlots(inventoryP.inventory.slots);
+
+        this.map = map;
 
         position = new float[3];
         position[0] = movementP.transform.position.x;
