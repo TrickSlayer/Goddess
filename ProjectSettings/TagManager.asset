@@ -57,11 +57,11 @@ TagManager:
   - name: Another background
     uniqueID: 2075129455
     locked: 0
-  - name: Character
-    uniqueID: 2811891819
-    locked: 0
   - name: Other Character
     uniqueID: 1647247539
+    locked: 0
+  - name: Character
+    uniqueID: 2811891819
     locked: 0
   - name: Ground
     uniqueID: 2708563991

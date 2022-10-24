@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,18 +11,12 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public PlayerMovement movementP;
     [HideInInspector] public GameObject player;
 
-    private GameObject[] players;
-
     // Start is called before the first frame update
 
     public static PlayerManager instance;
 
     private void Awake()
     {
-        player = gameObject;
-        inventoryP = player.GetComponent<PlayerInventory>();
-        statsP = player.GetComponent<PlayerStats>();
-        movementP = player.GetComponent<PlayerMovement>();
 
         if (instance != null && instance != this)
         {
@@ -33,10 +28,16 @@ public class PlayerManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        player = gameObject;
+        inventoryP = player.GetComponent<PlayerInventory>();
+        statsP = player.GetComponent<PlayerStats>();
+        movementP = player.GetComponent<PlayerMovement>();
     }
 
     private void Start()
     {
+
     }
 
     public void SavePlayer()
@@ -52,6 +53,7 @@ public class PlayerManager : MonoBehaviour
         {
             statsP.SetHealth(statsP.Health.Value);
             statsP.SetMana(statsP.Mana.Value);
+            ObjectPooler.instance.SpawnPool();
             return;
         }
 
@@ -71,6 +73,7 @@ public class PlayerManager : MonoBehaviour
         statsP.Score = data.Score;
 
         inventoryP.inventory.slots = data.getSlots();
+        inventoryP.inventory.needFresh = true;
 
         SceneManager.LoadScene(data.map);
 
@@ -81,6 +84,16 @@ public class PlayerManager : MonoBehaviour
 
         player.transform.position = position;
 
+        if (statsP.currentHealth <= 0)
+        {
+            statsP.Die();
+        }
+
+    }
+
+    public void SetPosition(Vector3 position)
+    {
+        player.transform.position = position;
     }
 
 }

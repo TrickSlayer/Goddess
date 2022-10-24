@@ -8,14 +8,21 @@ public class PlayerStats : CharacterStats
 {
     [HideInInspector] public static PlayerStats instance;
 
-    [HideInInspector] public int Level = 1;
-    [HideInInspector] public int Score = 1;
-    [HideInInspector] public CharacterStat Experience = new CharacterStat(100);
-    [HideInInspector] public int currentExperience = 0;
+    public int Level = 1;
+    public int Score = 1;
+    public CharacterStat Experience = new CharacterStat(100);
+    public int currentExperience = 0;
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     // Start is called before the first frame update
@@ -81,6 +88,7 @@ public class PlayerStats : CharacterStats
     public override void Die()
     {
         base.Die();
+        currentExperience = 0;
         PlayerManager.instance.movementP.isHurt(true);
         wasDie = true;
         PlayerManager.instance.player.gameObject.tag = "Untagged";

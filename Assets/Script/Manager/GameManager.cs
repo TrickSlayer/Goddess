@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
         currentScene = SceneManager.GetActiveScene().name;
         preScene = currentScene;
         SceneHasPool.Add(currentScene);
+        pooler = ObjectPooler.instance;
     }
 
     private void OnLevelWasLoaded(int level)
@@ -48,9 +50,17 @@ public class GameManager : MonoBehaviour
         currentScene = SceneManager.GetActiveScene().name;
         AddListScene(currentScene);
 
-        if (newScene)
+        try
         {
-            pooler.SpawnPool();
+            if (GameObject.FindGameObjectWithTag("Mark") == null)
+            {
+                pooler.SpawnPool();
+            }
+        }
+
+        catch (Exception e)
+        {
+            Debug.LogWarning(e);
         }
 
         GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StarPos");

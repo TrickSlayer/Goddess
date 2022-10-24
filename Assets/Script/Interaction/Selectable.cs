@@ -25,7 +25,7 @@ public class Selectable : MonoBehaviour
 
     public void Selected()
     {
-        GameObject newSelection = ObjectPooler.instance.SpawnFromPool(
+       GameObject newSelection = ObjectPooler.instance.SpawnFromPool(
                 "Mark",
                 transform.GetChild(0).gameObject.transform.position,
                 Quaternion.identity
@@ -35,21 +35,28 @@ public class Selectable : MonoBehaviour
 
     private void Update()
     {
-        Transform mark = transform.Find("Mark(Clone)");
-        if (mark != null)
+        if (Player != null)
         {
-            float dist = Vector3.Distance(Player.transform.position, transform.position);
-
-            if (dist > range)
+            Transform mark = transform.Find("Mark(Clone)");
+            if (mark != null)
             {
-                GameObject newSelection = ObjectPooler.instance.SpawnFromPool(
-                    "Mark",
-                    Player.transform.position,
-                    Quaternion.identity
-                );
-                newSelection.transform.SetParent(Player.transform);
-                newSelection.SetActive(false);
+                float dist = Vector3.Distance(Player.transform.position, transform.position);
+
+                if (dist > range)
+                {
+                    GameObject newSelection = ObjectPooler.instance.SpawnFromPool(
+                        "Mark",
+                        Player.transform.position,
+                        Quaternion.identity
+                    );
+                    newSelection.transform.SetParent(Player.transform);
+                    newSelection.SetActive(false);
+                }
             }
+        } else
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+
         }
     }
 
