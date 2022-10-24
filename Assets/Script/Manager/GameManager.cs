@@ -52,8 +52,12 @@ public class GameManager : MonoBehaviour
 
         try
         {
-            pooler.SpawnPool();
+            if (GameObject.FindGameObjectWithTag("Mark") == null)
+            {
+                pooler.SpawnPool();
+            }
         }
+
         catch (Exception e)
         {
             Debug.LogWarning(e);

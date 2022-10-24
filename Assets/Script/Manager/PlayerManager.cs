@@ -53,6 +53,7 @@ public class PlayerManager : MonoBehaviour
         {
             statsP.SetHealth(statsP.Health.Value);
             statsP.SetMana(statsP.Mana.Value);
+            ObjectPooler.instance.SpawnPool();
             return;
         }
 
@@ -82,6 +83,11 @@ public class PlayerManager : MonoBehaviour
         position.z = data.position[2];
 
         player.transform.position = position;
+
+        if (statsP.currentHealth <= 0)
+        {
+            statsP.Die();
+        }
 
     }
 
