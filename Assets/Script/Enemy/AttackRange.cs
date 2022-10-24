@@ -29,6 +29,14 @@ public class AttackRange : MonoBehaviour
         position = RightTarget.transform.position;
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -113,6 +121,14 @@ public class AttackRange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.transform.tag == "Camera")
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+
         if (collision.gameObject == Player)
         {
             changeTarget = true;
@@ -122,6 +138,15 @@ public class AttackRange : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+
+        if (collision.transform.tag == "Camera")
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+
         if (collision.gameObject == Player)
         {
             changeTarget = true;

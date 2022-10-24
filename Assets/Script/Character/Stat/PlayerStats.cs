@@ -89,6 +89,7 @@ public class PlayerStats : CharacterStats
     {
         base.Die();
         currentExperience = 0;
+        StatusAttack.instance.ShowMess("- " + currentExperience, Color.green);
         PlayerManager.instance.movementP.isHurt(true);
         wasDie = true;
         PlayerManager.instance.player.gameObject.tag = "Untagged";

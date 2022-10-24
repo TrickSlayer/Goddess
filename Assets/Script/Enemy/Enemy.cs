@@ -1,17 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using Random = System.Random;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
     public EnemyData data;
+    private ObjectPooler pooler;
 
     private void Start()
     {
         data.currentHealth = data.Health.Value;
+        pooler = ObjectPooler.instance;
     }
 
     private void Update()
@@ -65,11 +70,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Random ran = new System.Random();
-        int rate = ran.Next(0, 100);
+        int rate = Random.Range(0, 100);
         if (rate < data.Dodge.Value)
         {
-            Debug.Log("Attack Enemy Miss");
+            StatusAttack.instance.ShowMess("Attack Enemy Miss", Color.black);
             return;
         }
 
@@ -90,6 +94,7 @@ public class Enemy : MonoBehaviour
         data.currentHealth = data.Health.Value;
         PlayerStats player = PlayerStats.instance;
         player.currentExperience += data.Experience;
+        StatusAttack.instance.ShowMess("+ " + data.Experience, Color.green);
         if (player.currentExperience >= player.Experience.Value)
         {
             player.currentExperience -= player.Experience.Value;
@@ -99,9 +104,24 @@ public class Enemy : MonoBehaviour
         }
 
         GameObject Player = PlayerManager.instance.player;
-        GameObject newSelection = ObjectPooler.instance.SpawnFromPool("Mark", Player.transform.position, Quaternion.identity);
+        GameObject newSelection = pooler.SpawnFromPool("Mark", Player.transform.position, Quaternion.identity);
         newSelection.transform.SetParent(Player.transform);
         newSelection.SetActive(false);
+
+        DropItem();
+    }
+
+    private void DropItem()
+    {
+        if (Random.Range(1, 100) <= 50) {
+            int length = pooler.poolDictionary.Count;
+
+            int id = Random.Range(0, length);
+
+            String key = pooler.poolDictionary.ElementAt(id).Key;
+
+            GameObject drop = pooler.SpawnFromPool(key, transform.position, Quaternion.identity);
+        }
     }
 
 }

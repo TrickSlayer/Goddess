@@ -63,7 +63,7 @@ public class CharacterStats : MonoBehaviour
         int rate = ran.Next(0, 100);
         if (rate < Dodge.Value)
         {
-            Debug.Log("Attack Player Miss");
+            StatusAttack.instance.ShowMess("Attack Player Miss", Color.black);
             return;
         }
 
