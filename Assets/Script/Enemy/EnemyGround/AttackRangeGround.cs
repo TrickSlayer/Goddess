@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackRange : MonoBehaviour
+public class AttackRangeGround : MonoBehaviour
 {
     public float timeRespawn = 30f;
     float countDown;
     GameObject Enemy;
     GameObject LeftTarget;
     GameObject RightTarget;
-    AIDestinationSetter Setter;
+    GroundEnemyAI Setter;
     bool right = true;
     bool hasTarget = false;
     bool changeTarget = true;
@@ -24,7 +24,7 @@ public class AttackRange : MonoBehaviour
         Enemy = gameObject.transform.GetChild(0).gameObject;
         LeftTarget = gameObject.transform.GetChild(1).gameObject;
         RightTarget = gameObject.transform.GetChild(2).gameObject;
-        Setter = Enemy.GetComponent<AIDestinationSetter>();
+        Setter = Enemy.GetComponent<GroundEnemyAI>();
         Player = GameObject.FindGameObjectWithTag("Player");
         position = RightTarget.transform.position;
     }
@@ -61,19 +61,19 @@ public class AttackRange : MonoBehaviour
                     if (right)
                     {
                         position = RightTarget.transform.position;
-                        Setter.target = RightTarget.transform;
+                        Setter.targetObject = RightTarget;
                         right = false;
                     }
                     else
                     {
                         position = LeftTarget.transform.position;
-                        Setter.target = LeftTarget.transform;
+                        Setter.targetObject = LeftTarget;
                         right = true;
                     }
                 }
                 else
                 {
-                    Setter.target = Player.transform;
+                    Setter.targetObject = Player;
                 }
             }
         }
@@ -81,7 +81,7 @@ public class AttackRange : MonoBehaviour
 
     void CheckPlayerDie()
     {
-        if(Player.tag != "Player" && hasTarget)
+        if (Player.tag != "Player" && hasTarget)
         {
             hasTarget = false;
             changeTarget = true;
@@ -90,15 +90,17 @@ public class AttackRange : MonoBehaviour
 
     void CheckEnemyDie()
     {
-        if (!transform.GetChild(0).gameObject.activeInHierarchy)
+        GroundEnemyAI enemy = Enemy.GetComponent<GroundEnemyAI>();
+        if (enemy.data.currentHealth <= 0 && !Enemy.activeInHierarchy)
         {
-            if(countDown <= 0)
+            if (countDown <= 0)
             {
                 countDown = timeRespawn;
             }
             countDown -= Time.deltaTime;
             if (countDown <= 0)
             {
+                enemy.data.currentHealth = enemy.data.Health.Value;
                 transform.GetChild(0).gameObject.SetActive(true);
             }
         }
@@ -106,14 +108,15 @@ public class AttackRange : MonoBehaviour
 
     void RunAround()
     {
-        if (Mathf.Abs(Enemy.transform.position.x - position.x) < 0.1f && Mathf.Abs(Enemy.transform.position.y - position.y) < 0.1f)
+        if (Mathf.Abs(Enemy.transform.position.x - position.x) < 1f)
         {
             if (canChange)
             {
                 canChange = false;
                 changeTarget = true;
             }
-        } else
+        }
+        else
         {
             canChange = true;
         }
@@ -121,12 +124,14 @@ public class AttackRange : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Camera")
+        if (collision.transform.tag == "Camera" && countDown <= 0)
         {
             for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.SetActive(true);
             }
+
+            transform.GetChild(0).transform.position = (transform.GetChild(1).transform.position + transform.GetChild(2).transform.position) / 2;
         }
 
         if (collision.gameObject == Player)
@@ -141,10 +146,10 @@ public class AttackRange : MonoBehaviour
 
         if (collision.transform.tag == "Camera")
         {
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).gameObject.SetActive(false);
-            }
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);
+                }
         }
 
         if (collision.gameObject == Player)

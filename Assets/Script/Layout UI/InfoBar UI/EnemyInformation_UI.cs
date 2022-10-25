@@ -32,9 +32,19 @@ public class EnemyInformation_UI : MonoBehaviour
                     if(Selected.GetInstanceID() == newSelected.GetInstanceID())
                     {
                         Selected = newSelected;
-                        Enemy enemy = Selected.GetComponent<Enemy>();
+                        Enemy enemy = Selected.GetComponent<EnemyFly>();
+                        if (enemy == null)
+                        {
+                            enemy = Selected.GetComponent<GroundEnemyAI>();
+                        }
+                        if (enemy == null)
+                        {
+                            enemy = Selected.GetComponent<FrogEnemy>();
+                        }
+                            
                         Name.text = enemy.data.enemyName;
                         Health.text = enemy.data.currentHealth + "/" + enemy.data.Health.Value;
+                        
                     }
 
                 }

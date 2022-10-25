@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8390682009339081718, guid: a942356bf042bdf47a999bb516e78726, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8390682009339081718, guid: a942356bf042bdf47a999bb516e78726, type: 3}
       propertyPath: m_SortingLayerID
@@ -246,7 +246,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2422997510245645361, guid: a942356bf042bdf47a999bb516e78726, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a942356bf042bdf47a999bb516e78726, type: 3}
 --- !u!4 &8595174220151837939 stripped
 Transform:

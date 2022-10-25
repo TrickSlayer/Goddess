@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Goddess.PlayerStat;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -59,8 +59,7 @@ public class CharacterStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Random ran = new System.Random();
-        int rate = ran.Next(0, 100);
+        int rate = Random.Range(0, 100);
         if (rate < Dodge.Value)
         {
             StatusAttack.instance.ShowMess("Attack Player Miss", Color.black);
@@ -69,7 +68,7 @@ public class CharacterStats : MonoBehaviour
 
         damage -= Defense.Value;
 
-        currentHealth -= Mathf.Clamp(damage, 0, int.MaxValue);
+        currentHealth -= Mathf.Clamp(damage, 1, int.MaxValue);
 
         HealthBar.SetValue(currentHealth);
 
@@ -88,8 +87,7 @@ public class CharacterStats : MonoBehaviour
     public int AttackEnemy()
     {
         int damage = Attack.Value;
-        Random ran = new System.Random();
-        int rate = ran.Next(0, 100);
+        int rate = Random.Range(0, 100);
         if (rate < CritRate.Value)
         {
             damage *= CritDamage.Value / 100;
@@ -97,7 +95,7 @@ public class CharacterStats : MonoBehaviour
         return damage;
     }
 
-    void UseSkill(int mana)
+    public void UseSkill(int mana)
     {
         currentMana -= mana;
 

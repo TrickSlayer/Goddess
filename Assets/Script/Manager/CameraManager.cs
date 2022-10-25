@@ -53,8 +53,6 @@ public class CameraManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.LogWarning("?");
-        Debug.LogWarning(collision.gameObject.name);
     }
 
 }
