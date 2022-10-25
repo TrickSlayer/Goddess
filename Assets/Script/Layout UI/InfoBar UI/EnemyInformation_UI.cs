@@ -19,40 +19,36 @@ public class EnemyInformation_UI : MonoBehaviour
     void Update()
     {
         GameObject mark = GameObject.FindGameObjectWithTag("Mark");
-        if(mark != null)
+        if (mark != null)
         {
             GameObject newSelected = mark.transform.parent.gameObject;
             if (newSelected.tag.Equals("Enemy"))
             {
-                if (Selected == null)
+                if (Selected == null || Selected.GetInstanceID() != newSelected.GetInstanceID())
                 {
                     Selected = newSelected;
-                } else
-                {
-                    if(Selected.GetInstanceID() != newSelected.GetInstanceID())
+
+                    Enemy enemy = Selected.GetComponent<EnemyFly>();
+                    if (enemy == null)
                     {
-                        Selected = newSelected;
-                        Enemy enemy = Selected.GetComponent<EnemyFly>();
-                        if (enemy == null)
-                        {
-                            enemy = Selected.GetComponent<GroundEnemyAI>();
-                        }
-                        if (enemy == null)
-                        {
-                            enemy = Selected.GetComponent<FrogEnemy>();
-                        }
-                            
-                        Name.text = enemy.data.enemyName;
-                        Health.text = enemy.data.currentHealth + "/" + enemy.data.Health.Value;
-                        
+                        enemy = Selected.GetComponent<GroundEnemyAI>();
                     }
+                    if (enemy == null)
+                    {
+                        enemy = Selected.GetComponent<FrogEnemy>();
+                    }
+
+                    Name.text = enemy.data.enemyName;
+                    Health.text = enemy.data.currentHealth + "/" + enemy.data.Health.Value;
 
                 }
 
             }
-        } else
+        }
+        else
         {
             Fresh();
+            Selected = null;
         }
 
     }

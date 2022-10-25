@@ -77,3 +77,6 @@ MonoBehaviour:
   - tag: impactEffect
     prefab: {fileID: 8536693452386130419, guid: 8cad810ca37e5c647831a4cb27822f9b, type: 3}
     size: 1
+  - tag: Bee
+    prefab: {fileID: 8896331667518311974, guid: ef4b3dd223f60ae488b61fc2c4a68a6a, type: 3}
+    size: 5

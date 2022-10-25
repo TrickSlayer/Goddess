@@ -10,6 +10,9 @@ public class LazerWeapon : MonoBehaviour
     PlayerStats PlayerStats;
     GameObject Selected = null;
 
+    int skill1Mana = 10;
+    int skill2Mana = 20;
+
     private void Start()
     {
         pooler = ObjectPooler.instance;
@@ -21,33 +24,38 @@ public class LazerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Shot();
-            PlayerStats.UseSkill(10);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            GameObject mark = GameObject.FindGameObjectWithTag("Mark");
-            if (mark != null)
+        if (PlayerStats.currentMana > skill1Mana)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                GameObject newSelected = mark.transform.parent.gameObject;
-                if (newSelected.tag.Equals("Enemy"))
-                {
-                    Debug.Log(newSelected + " ... " + Selected);
-                    if (Selected == null || Selected.GetInstanceID() != newSelected.GetInstanceID())
-                    {
-                        Selected = newSelected;
-                    }
-
-                }
-
-                Shot(Selected);
-                PlayerStats.UseSkill(20);
+                Shot();
+                PlayerStats.UseSkill(skill1Mana);
             }
 
-        }
+        if (PlayerStats.currentMana > skill2Mana)
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                GameObject mark = GameObject.FindGameObjectWithTag("Mark");
+                if (mark != null)
+                {
+                    GameObject newSelected = mark.transform.parent.gameObject;
+                    if (newSelected.tag.Equals("Enemy"))
+                    {
+                        Debug.Log(newSelected + " ... " + Selected);
+                        if (Selected == null || Selected.GetInstanceID() != newSelected.GetInstanceID())
+                        {
+                            Selected = newSelected;
+                        }
+
+                    }
+
+                    Shot(Selected);
+                    PlayerStats.UseSkill(skill2Mana);
+                } else
+                {
+                    Selected = null;
+                }
+
+            }
     }
 
     void Shot(GameObject target = null)

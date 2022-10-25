@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     PlayerStats stats;
     Animator animator;
     ObjectPooler pooler;
-    private float time = 3f;
+    private float time = 1.8f;
     private float countDown = 0;
 
     private void Start()
