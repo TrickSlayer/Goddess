@@ -35,7 +35,8 @@ public class LazerWeapon : MonoBehaviour
                 GameObject newSelected = mark.transform.parent.gameObject;
                 if (newSelected.tag.Equals("Enemy"))
                 {
-                    if (Selected == null || Selected.GetInstanceID() == newSelected.GetInstanceID())
+                    Debug.Log(newSelected + " ... " + Selected);
+                    if (Selected == null || Selected.GetInstanceID() != newSelected.GetInstanceID())
                     {
                         Selected = newSelected;
                     }

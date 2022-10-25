@@ -38,6 +38,18 @@ public class PlayerStats : CharacterStats
 
     }
 
+    public void gainExperience(int exp)
+    {
+        currentExperience += exp;
+        if (currentExperience >= Experience.Value)
+        {
+            currentExperience -= Experience.Value;
+            Level += 1;
+            Experience.AddModifier(new Goddess.PlayerStat.Stat(50, Goddess.PlayerStat.StatType.PercentMut));
+            Score += Level;
+        }
+    }
+
     public void OnEquipmentChanged(Item newItem, Item oldItem)
     {
         if (newItem != null)

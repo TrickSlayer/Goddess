@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class EagleEnemy : EnemyFly
 {
+
+    public override int Attack()
+    {
+        return data.Attack.Value;
+    }
+
     public  override void AfterTrigger(GameObject player)
     {
         float x = (player.transform.position - transform.position).normalized.x;

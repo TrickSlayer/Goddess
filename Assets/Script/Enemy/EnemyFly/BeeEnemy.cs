@@ -16,9 +16,15 @@ public class BeeEnemy : EnemyFly
         base.Start();
         Setter = GetComponent<AIDestinationSetter>();
         Player = GameObject.FindGameObjectWithTag("Player");
+        transform.localScale = new Vector3(0.5f, 0.5f, 1);
     }
 
-    protected override void Update()
+    public override int Attack()
+    {
+        return data.Attack.Value;
+    }
+
+    protected void Update()
     {
 
         if (Player == null)
@@ -63,6 +69,7 @@ public class BeeEnemy : EnemyFly
         }
         else { change = true; }
     }
+
 
     public override void AfterTrigger(GameObject player)
     {

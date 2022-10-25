@@ -16,6 +16,8 @@ public class Bullet : MonoBehaviour
     PlayerStats stats;
     Animator animator;
     ObjectPooler pooler;
+    private float time = 3f;
+    private float countDown = 0;
 
     private void Start()
     {
@@ -36,6 +38,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (rb.velocity == Vector2.zero && target == null)
         {
             if (controller.facingRight)
@@ -47,7 +50,20 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (target!= null)
+
+        if (gameObject.activeInHierarchy && countDown <= 0)
+        {
+            countDown = time;
+        }
+
+        if(countDown > 0)
+        {
+            countDown -= Time.fixedDeltaTime;
+            if(countDown <= 0)
+            gameObject.SetActive(false);
+        }
+
+        if (target != null)
         {
             Vector3 direction = (target.transform.position - transform.position).normalized;
             rb.velocity = direction * speed;
@@ -71,7 +87,7 @@ public class Bullet : MonoBehaviour
 
     public int AttackEnemy()
     {
-        int damage = (int) Mathf.Round(stats.Attack.Value * 1.5f);
+        int damage = (int)Mathf.Round(stats.Attack.Value * 1.5f);
         int rate = Random.Range(0, 100);
         if (rate < stats.CritRate.Value)
         {

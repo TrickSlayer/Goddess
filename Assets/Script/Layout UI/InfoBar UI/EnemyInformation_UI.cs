@@ -29,7 +29,7 @@ public class EnemyInformation_UI : MonoBehaviour
                     Selected = newSelected;
                 } else
                 {
-                    if(Selected.GetInstanceID() == newSelected.GetInstanceID())
+                    if(Selected.GetInstanceID() != newSelected.GetInstanceID())
                     {
                         Selected = newSelected;
                         Enemy enemy = Selected.GetComponent<EnemyFly>();
