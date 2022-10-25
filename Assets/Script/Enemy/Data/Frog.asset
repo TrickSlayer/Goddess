@@ -17,9 +17,9 @@ MonoBehaviour:
     BaseValue: 1000
   currentHealth: 0
   Defense:
-    BaseValue: 0
+    BaseValue: 20
   Attack:
     BaseValue: 0
   Dodge:
-    BaseValue: 0
+    BaseValue: 5
   Experience: 100
