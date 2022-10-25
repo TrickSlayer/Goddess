@@ -17,7 +17,7 @@ public class CharacterController2D : MonoBehaviour
     [HideInInspector] public bool Ceiling;
                                        
 	private Rigidbody2D Rigidbody2D;
-	private bool facingRight = true;                                            // For determining which way the player is currently facing.
+	public bool facingRight = true;                                            // For determining which way the player is currently facing.
 	private Vector3 Velocity = Vector3.zero;
     private bool wasCrouching = false;
 

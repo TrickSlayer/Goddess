@@ -231,7 +231,6 @@ GameObject:
   - component: {fileID: 8390682009339081718}
   - component: {fileID: 5215988355496562673}
   - component: {fileID: 1265235949010026945}
-  - component: {fileID: 2422997510245645361}
   m_Layer: 0
   m_Name: Eagle
   m_TagString: Untagged
@@ -338,17 +337,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e4de8a58ddb1b42847a7d74dfa88a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2422997510245645361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8919412225089673123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fbc68361cbf70a4cb94c9c0e438bb60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  range: 10

@@ -38,6 +38,18 @@ public class PlayerStats : CharacterStats
 
     }
 
+    public void gainExperience(int exp)
+    {
+        currentExperience += exp;
+        if (currentExperience >= Experience.Value)
+        {
+            currentExperience -= Experience.Value;
+            Level += 1;
+            Experience.AddModifier(new Goddess.PlayerStat.Stat(50, Goddess.PlayerStat.StatType.PercentMut));
+            Score += Level;
+        }
+    }
+
     public void OnEquipmentChanged(Item newItem, Item oldItem)
     {
         if (newItem != null)
@@ -89,6 +101,7 @@ public class PlayerStats : CharacterStats
     {
         base.Die();
         currentExperience = 0;
+        StatusAttack.instance.ShowMess("- " + currentExperience, Color.green);
         PlayerManager.instance.movementP.isHurt(true);
         wasDie = true;
         PlayerManager.instance.player.gameObject.tag = "Untagged";

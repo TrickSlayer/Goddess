@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EagleEnemy : Enemy
+public class EagleEnemy : EnemyFly
 {
-    public override void AfterTrigger(GameObject player)
+
+    public override int Attack()
     {
-        float x = player.transform.position.x - transform.position.x;
+        return data.Attack.Value;
+    }
+
+    public  override void AfterTrigger(GameObject player)
+    {
+        float x = (player.transform.position - transform.position).normalized.x;
         if (x < -1.3) x = -1.3f;
         if (x > 1.3) x = 1.3f;
         transform.position = transform.position + new Vector3(-x,2,0);
