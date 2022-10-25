@@ -475,6 +475,8 @@ MonoBehaviour:
   statsP: {fileID: 0}
   movementP: {fileID: 0}
   player: {fileID: 0}
+  newGame: 0
+  data: {fileID: 11400000, guid: 652b883bd3cba7a449266b3c06cfdedc, type: 2}
 --- !u!1 &6707787451749021583
 GameObject:
   m_ObjectHideFlags: 0
