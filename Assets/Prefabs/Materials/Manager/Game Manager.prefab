@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4958723447544354782}
   - component: {fileID: 4958723447544354783}
   - component: {fileID: 5288797662717035705}
+  - component: {fileID: 5852328676130872426}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   pooler: {fileID: 5288797662717035705}
   preScene: 
   currentScene: 
+  dialogBoxUI: {fileID: 0}
 --- !u!114 &5288797662717035705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,3 +82,16 @@ MonoBehaviour:
   - tag: Bee
     prefab: {fileID: 8896331667518311974, guid: ef4b3dd223f60ae488b61fc2c4a68a6a, type: 3}
     size: 5
+--- !u!114 &5852328676130872426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958723447544354781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1450a69c43f4698428189771246fc96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timePlay: 0

@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void Die()
+    protected virtual void Die()
     {
         gameObject.SetActive(false);
 

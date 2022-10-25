@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public PlayerStats statsP;
     [HideInInspector] public PlayerMovement movementP;
     [HideInInspector] public GameObject player;
+    public bool newGame = false;
+    public PlayerBeginData data;
 
     // Start is called before the first frame update
 
@@ -35,9 +37,18 @@ public class PlayerManager : MonoBehaviour
         movementP = player.GetComponent<PlayerMovement>();
     }
 
-    private void Start()
+    public void ResetStats()
     {
-
+        statsP.Level = data.Level;
+        statsP.Score = data.Score;
+        statsP.Experience = data.Experience;
+        statsP.Health = data.Health;
+        statsP.Mana = data.Mana;
+        statsP.Defense = data.Defense;
+        statsP.Attack = data.Attack;
+        statsP.CritRate = data.CritRate;
+        statsP.CritDamage = data.CritDamage;
+        statsP.Dodge = data.Dodge;
     }
 
     public void SavePlayer()
@@ -51,9 +62,16 @@ public class PlayerManager : MonoBehaviour
 
         if(data == null)
         {
+            ResetStats();
+            statsP.SetStartHealth();
+            statsP.SetStartMana();
             statsP.SetHealth(statsP.Health.Value);
             statsP.SetMana(statsP.Mana.Value);
+            statsP.currentExperience = 0;
             ObjectPooler.instance.SpawnPool();
+
+            newGame = true;
+
             return;
         }
 
