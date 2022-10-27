@@ -2,23 +2,31 @@ using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using static UnityEditor.Search.SearchColumn;
 
-public class AttackRangeGround : EnemyAttackRange
+public class AttackRangeFly : EnemyAttackRange
 {
-    GroundEnemyAI Setter;
+    AIDestinationSetter Setter;
+    Enemy SetterEnemy;
     bool right = true;
 
     private void Awake()
     {
-        Setter = Enemy.GetComponent<GroundEnemyAI>();       
+        Setter = Enemy.GetComponent<AIDestinationSetter>();
+        SetterEnemy = Enemy.GetComponent<EagleEnemy>();
+
+        if (SetterEnemy == null)
+        {
+            Enemy.GetComponent<BeeEnemy>();
+        }
+
     }
 
     protected override void Update()
     {
-        RunAround();
-
         base.Update();
+
+        RunAround();
 
         if (changeTarget)
         {
@@ -28,19 +36,21 @@ public class AttackRangeGround : EnemyAttackRange
                 if (right)
                 {
                     position = RightTarget.transform.position;
-                    Setter.targetObject = RightTarget;
+                    SetterEnemy.targetObject = RightTarget;
+                    Setter.target = RightTarget.transform;
                     right = false;
                 }
                 else
                 {
                     position = LeftTarget.transform.position;
-                    Setter.targetObject = LeftTarget;
+                    SetterEnemy.targetObject = LeftTarget;
+                    Setter.target = LeftTarget.transform;
                     right = true;
                 }
             }
             else
             {
-                Setter.targetObject = Player;
+                Setter.target = Player.transform;
             }
         }
     }

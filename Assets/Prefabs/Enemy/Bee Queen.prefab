@@ -187,7 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5b0eeb84daf46499a8b041ee4cafcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
   data: {fileID: 11400000, guid: 4d0cb94343d0b9540a8f24ebac31d393, type: 2}
+  isDie: 0
   Points: []
 --- !u!1 &1727346682072705047
 GameObject:
@@ -231,7 +233,6 @@ GameObject:
   - component: {fileID: 1727346682746791293}
   - component: {fileID: 1727346682746791292}
   - component: {fileID: 1727346682746791295}
-  - component: {fileID: 1727346682746791290}
   m_Layer: 0
   m_Name: Bee
   m_TagString: Untagged
@@ -326,15 +327,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1727346682746791290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727346682746791294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48e4de8a58ddb1b42847a7d74dfa88a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

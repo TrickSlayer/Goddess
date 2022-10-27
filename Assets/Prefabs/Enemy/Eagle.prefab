@@ -187,7 +187,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270bfffea3adf8843839b293dde37544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
   data: {fileID: 11400000, guid: 7e15d2ca9ecf72d41a2d98365734f4cc, type: 2}
+  currentHealth: 0
+  isDie: 0
 --- !u!1 &4686811841022001590
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +233,6 @@ GameObject:
   - component: {fileID: 8627299191761389141}
   - component: {fileID: 8390682009339081718}
   - component: {fileID: 5215988355496562673}
-  - component: {fileID: 1265235949010026945}
   m_Layer: 0
   m_Name: Eagle
   m_TagString: Untagged
@@ -325,15 +327,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1265235949010026945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8919412225089673123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48e4de8a58ddb1b42847a7d74dfa88a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

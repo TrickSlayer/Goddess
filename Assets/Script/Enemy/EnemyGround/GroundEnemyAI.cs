@@ -8,51 +8,26 @@ using Random = UnityEngine.Random;
 
 public class GroundEnemyAI : Enemy
 {
-    [HideInInspector] public GameObject targetObject;
     [SerializeField] float speed;
     Rigidbody2D rg;
-    private bool faceRight = false;
+
 
     protected override void Start()
     {
         base.Start();
         rg = GetComponent<Rigidbody2D>();
-        data.currentHealth = data.Health.Value;
         pooler = ObjectPooler.instance;
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
+
         if (targetObject != null) {
             float directionX = (targetObject.transform.position - transform.position).normalized.x;
-            //rg.velocity = new Vector3(directionX, rg.gravityScale * Time.fixedDeltaTime, 0) * speed;
             if (Mathf.Abs(rg.velocity.x) < 3 || rg.velocity.x * directionX < 0)
                 rg.AddForce(new Vector3(directionX, 0, 0) * speed);
-            RotationFace(directionX);
         }
-    }
-
-    private void RotationFace(float move)
-    {
-        if (move > 0 && !faceRight)
-        {
-            Flip();
-        }
-
-        else if (move < 0 && faceRight)
-        {
-            Flip();
-        }
-    }
-
-
-    private void Flip()
-    {
-        faceRight = !faceRight;
-
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

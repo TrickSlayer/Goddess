@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRespawn: 30
+  Enemy: {fileID: 1736465024477400182}
+  LeftTarget: {fileID: 1736465024481663834}
+  RightTarget: {fileID: 1736465024693840173}
 --- !u!1 &1736465023497412089
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,8 +269,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1647247539
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: baa0c643131554ff99574059ec7da1cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -363,9 +366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84405bed66198834fb959e895b49acb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 3049ed68e3a7f15498bdf42683a25fa9, type: 2}
   targetObject: {fileID: 0}
   speed: 3
-  data: {fileID: 11400000, guid: 3049ed68e3a7f15498bdf42683a25fa9, type: 2}
 --- !u!1 &1736465024481663834
 GameObject:
   m_ObjectHideFlags: 0

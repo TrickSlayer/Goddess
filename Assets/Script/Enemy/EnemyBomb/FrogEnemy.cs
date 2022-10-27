@@ -10,7 +10,7 @@ public class FrogEnemy : Enemy
 
     public override int Attack()
     {
-        return data.currentHealth;
+        return currentHealth;
     }
 
 }

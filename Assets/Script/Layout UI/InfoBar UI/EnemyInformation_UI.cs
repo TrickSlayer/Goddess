@@ -39,7 +39,7 @@ public class EnemyInformation_UI : MonoBehaviour
                     }
 
                     Name.text = enemy.data.enemyName;
-                    Health.text = enemy.data.currentHealth + "/" + enemy.data.Health.Value;
+                    Health.text = enemy.currentHealth + "/" + enemy.data.Health.Value;
 
                 }
 
