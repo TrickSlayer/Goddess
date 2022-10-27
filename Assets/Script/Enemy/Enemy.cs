@@ -7,13 +7,53 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
+    [HideInInspector] public GameObject targetObject;
     public EnemyData data;
+    public int currentHealth;
+    public bool isDie = false;
     protected ObjectPooler pooler;
+    private bool faceRight = false;
+    
+    private void Awake()
+    {
+        currentHealth = data.Health.Value;
+    }
 
     protected virtual void Start()
     {
-        data.currentHealth = data.Health.Value;
         pooler = ObjectPooler.instance;
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        if (targetObject != null)
+        {
+            float directionX = (targetObject.transform.position - transform.position).normalized.x;
+            RotationFace(directionX);
+        }
+    }
+
+    private void RotationFace(float move)
+    {
+        if (move > 0 && !faceRight)
+        {
+            Flip();
+        }
+
+        else if (move < 0 && faceRight)
+        {
+            Flip();
+        }
+    }
+
+
+    private void Flip()
+    {
+        faceRight = !faceRight;
+
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
     public virtual int Attack()
@@ -42,11 +82,12 @@ public class Enemy : MonoBehaviour
 
         damage -= data.Defense.Value;
 
-        data.currentHealth -= Mathf.Clamp(damage, 1, int.MaxValue);
+        currentHealth -= Mathf.Clamp(damage, 1, int.MaxValue);
 
-        if (data.currentHealth <= 0)
+        if (currentHealth <= 0)
         {
-            data.currentHealth = 0;
+            currentHealth = 0;
+            isDie = true;
             Die();
         }
     }
@@ -60,7 +101,9 @@ public class Enemy : MonoBehaviour
 
         StatusAttack.instance.ShowMess("+ " + data.Experience, Color.green);
 
-        gameObject.transform.Find("Mark(Clone)").gameObject.SetActive(false);
+        GameObject mark = gameObject.transform.Find("Mark(Clone)").gameObject;
+        
+        if(mark != null) mark.SetActive(false);
 
         DropItem();
     }

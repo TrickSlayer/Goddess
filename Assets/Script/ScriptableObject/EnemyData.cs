@@ -9,7 +9,6 @@ public class EnemyData : ScriptableObject
 {
     public string enemyName = "Enemy Name";
     public CharacterStat Health;
-    [HideInInspector] public int currentHealth;
     public CharacterStat Defense;
     public CharacterStat Attack;
     public CharacterStat Dodge;
