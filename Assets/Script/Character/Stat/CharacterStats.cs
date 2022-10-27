@@ -42,16 +42,16 @@ public class CharacterStats : MonoBehaviour
     public InformationBar HealthBar;
     public InformationBar ManaBar;
 
-    [HideInInspector] public int currentHealth { get; private set; }
-    [HideInInspector] public int currentMana { get; private set; }
+    public int currentHealth { get; private set; }
+    public int currentMana { get; private set; }
 
-    protected void SetStartHealth()
+    public void SetStartHealth()
     {
         HealthBar.SetMaxValue(Health.Value);
         HealthBar.SetValue(currentHealth);
     }
 
-    protected void SetStartMana()
+    public void SetStartMana()
     {
         ManaBar.SetMaxValue(Mana.Value);
         ManaBar.SetValue(currentMana);

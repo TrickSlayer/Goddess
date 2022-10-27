@@ -28,8 +28,6 @@ public class EnemyBeeQueen : EnemyFly
     {
         RunAround();
 
-        CheckEnemyDie();
-
         if (changeTarget)
         {
             changeTarget = false;
@@ -82,22 +80,12 @@ public class EnemyBeeQueen : EnemyFly
         }
     }
 
-    void CheckEnemyDie()
+    protected override void Die()
     {
-        /*        EnemyFly enemy = GetComponent<EnemyFly>();
-                if (enemy.data.currentHealth <= 0 && !Enemy.activeInHierarchy)
-                {
-                    if (countDown <= 0)
-                    {
-                        countDown = timeRespawn;
-                    }
-                    countDown -= Time.deltaTime;
-                    if (countDown <= 0)
-                    {
-                        enemy.data.currentHealth = enemy.data.Health.Value;
-                        transform.GetChild(0).gameObject.SetActive(true);
-                    }
-                }*/
+        base.Die();
+        GameManager manager = GameManager.instance;
+
+        manager.timer.bossDie = true;
     }
 
     public override void AfterTrigger(GameObject player)
