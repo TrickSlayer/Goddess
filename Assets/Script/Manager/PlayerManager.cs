@@ -83,6 +83,8 @@ public class PlayerManager : MonoBehaviour
         statsP.Dodge = data.Dodge;
         statsP.CritDamage = data.CritDamage;
         statsP.CritRate = data.CritRate;
+        statsP.SetStartHealth();
+        statsP.SetStartMana();
         statsP.SetHealth(data.currentHealth);
         statsP.SetMana(data.currentMana);
 
