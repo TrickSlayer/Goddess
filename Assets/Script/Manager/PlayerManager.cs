@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector] public GameObject player;
     public bool newGame = false;
     public PlayerBeginData data;
+    public Vector3 startPosition;
+    public bool loadPlayer = true;
 
     // Start is called before the first frame update
 
@@ -98,12 +100,9 @@ public class PlayerManager : MonoBehaviour
 
         StartCoroutine(LoadLevel.LoadScreen(data.map));
 
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-
-        SetPosition(position);
+        startPosition.x = data.position[0];
+        startPosition.y = data.position[1];
+        startPosition.z = data.position[2];
 
         if (statsP.currentHealth <= 0)
         {

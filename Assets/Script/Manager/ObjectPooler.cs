@@ -43,7 +43,6 @@ public class ObjectPooler : MonoBehaviour
 
     public void SpawnPool()
     {
-        Debug.LogWarning("SpawnPool");
 
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 

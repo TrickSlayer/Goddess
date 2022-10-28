@@ -14,6 +14,8 @@ public class Selectable : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.LogWarning(gameObject);
+
         float dist = Vector3.Distance(Player.transform.position, transform.position);
 
         if (dist < range)

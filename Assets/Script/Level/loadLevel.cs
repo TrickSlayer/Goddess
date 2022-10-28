@@ -8,13 +8,6 @@ public class LoadLevel : MonoBehaviour
 {
     public string sLevelToLoad;
 
-    //private static ObjectPooler pooler;
-
-/*    private void Start()
-    {
-        pooler = ObjectPooler.instance;
-    }*/
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
 

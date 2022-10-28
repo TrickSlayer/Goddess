@@ -86,12 +86,20 @@ public class GameManager : MonoBehaviour
            pooler.SpawnPool();
         }
 
-        GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StarPos");
-        GameObject startPoint = startPoints.FirstOrDefault(x => x.name.Equals(preScene));
-        preScene = currentScene;
-        if (startPoint != null)
+        if (playerManager.loadPlayer)
         {
-            playerManager.player.transform.position = startPoint.transform.position;
+            playerManager.SetPosition(playerManager.startPosition);
+            playerManager.loadPlayer = false;
+        }
+        else
+        {
+            GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StarPos");
+            GameObject startPoint = startPoints.FirstOrDefault(x => x.name.Equals(preScene));
+            preScene = currentScene;
+            if (startPoint != null)
+            {
+                playerManager.SetPosition(startPoint.transform.position);
+            }
         }
         CameraManager.instance.AddContraintCamera();
     }
