@@ -14,16 +14,17 @@ public class GameManager : MonoBehaviour
     public PlayerManager playerManager;
     public ObjectPooler pooler;
 
-    private List<string> SceneHasPool = new List<string>();
     [HideInInspector] public string preScene;
     [HideInInspector] public string currentScene;
     public GameObject dialogBoxUI;
     [HideInInspector] public TimerManager timer;
     public GameObject gameStatus;
 
+    private bool startGame = true;
+
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-            
+
     }
 
     private void Start()
@@ -42,6 +43,8 @@ public class GameManager : MonoBehaviour
         timer = GetComponent<TimerManager>();
 
         Restart();
+
+        startGame = false;
     }
 
     public void Restart()
@@ -60,8 +63,6 @@ public class GameManager : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene().name;
         preScene = currentScene;
-        SceneHasPool.Add(currentScene);
-        pooler = ObjectPooler.instance;
     }
 
     private void Update()
@@ -75,22 +76,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     private void OnLevelWasLoaded(int level)
     {
         currentScene = SceneManager.GetActiveScene().name;
-        AddListScene(currentScene);
 
-        try
+        if (!startGame)
         {
-            if (GameObject.FindGameObjectWithTag("Mark") == null)
-            {
-                pooler.SpawnPool();
-            }
-        }
-
-        catch (Exception e)
-        {
-            Debug.LogWarning(e);
+           pooler.SpawnPool();
         }
 
         GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StarPos");
@@ -107,15 +100,6 @@ public class GameManager : MonoBehaviour
     {
         timer.SaveTimmer();
         playerManager.SavePlayer();
-    }
-
-    private void AddListScene(string current)
-    {
-
-        if (SceneHasPool.Where(x => x.Equals(current)).ToList().Count == 0)
-        {
-            SceneHasPool.Add(current);
-        }
     }
 
 }

@@ -36,8 +36,9 @@ public class EnemyBeeQueen : EnemyFly
 
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         SpawnCreep();
     }
 

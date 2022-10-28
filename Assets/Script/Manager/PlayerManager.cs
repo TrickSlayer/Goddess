@@ -68,6 +68,7 @@ public class PlayerManager : MonoBehaviour
             statsP.SetHealth(statsP.Health.Value);
             statsP.SetMana(statsP.Mana.Value);
             statsP.currentExperience = 0;
+
             ObjectPooler.instance.SpawnPool();
 
             newGame = true;
@@ -93,14 +94,14 @@ public class PlayerManager : MonoBehaviour
         inventoryP.inventory.slots = data.getSlots();
         inventoryP.inventory.needFresh = true;
 
-        SceneManager.LoadScene(data.map);
+        StartCoroutine(LoadLevel.LoadScreen(data.map));
 
         Vector3 position;
         position.x = data.position[0];
         position.y = data.position[1];
         position.z = data.position[2];
 
-        player.transform.position = position;
+        SetPosition(position);
 
         if (statsP.currentHealth <= 0)
         {
