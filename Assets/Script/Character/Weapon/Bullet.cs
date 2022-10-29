@@ -74,7 +74,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Enemy" || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            StartCoroutine(popDownAnimation());
+            impactEffect = pooler.SpawnFromPool("impactEffect", transform.position, Quaternion.identity);
 
             if (collision.tag == "Enemy")
             {
@@ -95,19 +95,5 @@ public class Bullet : MonoBehaviour
         }
 
         return damage;
-    }
-
-    IEnumerator popDownAnimation()
-    {
-        rb.velocity /= 1000;
-        impactEffect = pooler.SpawnFromPool("impactEffect", transform.position, Quaternion.identity);
-
-        animator = impactEffect.GetComponent<Animator>();
-
-        float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSecondsRealtime(animationLength);
-
-        gameObject.SetActive(false);
-        impactEffect.SetActive(false);
     }
 }

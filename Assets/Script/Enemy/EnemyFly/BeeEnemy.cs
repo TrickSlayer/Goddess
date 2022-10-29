@@ -2,6 +2,7 @@ using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class BeeEnemy : EnemyFly
@@ -26,6 +27,10 @@ public class BeeEnemy : EnemyFly
 
     protected void Update()
     {
+        if (SceneManager.GetActiveScene().name != "Forest")
+        {
+            gameObject.SetActive(false);
+        }
 
         if (Player == null)
         {

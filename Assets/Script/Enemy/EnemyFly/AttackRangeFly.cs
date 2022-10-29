@@ -51,6 +51,7 @@ public class AttackRangeFly : EnemyAttackRange
             else
             {
                 Setter.target = Player.transform;
+                SetterEnemy.targetObject = Player;
             }
         }
     }

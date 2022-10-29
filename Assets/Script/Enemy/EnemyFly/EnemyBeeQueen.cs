@@ -13,7 +13,7 @@ public class EnemyBeeQueen : EnemyFly
     bool canChange = true;
 
     Transform pos;
-    float time = 30f;
+    float time = 10f;
     float countDown = 0f;
 
     protected override void Start()

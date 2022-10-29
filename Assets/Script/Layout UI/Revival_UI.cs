@@ -38,7 +38,7 @@ public class Revival_UI : MonoBehaviour
     public IEnumerator LoadScreenRevival()
     {
 
-        var asyncLoadLevel = SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
+        var asyncLoadLevel = SceneManager.LoadSceneAsync("Beach", LoadSceneMode.Single);
 
         while (!asyncLoadLevel.isDone)
         {

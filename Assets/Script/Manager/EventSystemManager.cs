@@ -18,6 +18,5 @@ public class EventSystemManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
     }
 }

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerManager playerManager;
     public ObjectPooler pooler;
+    public bool saveGame = true;
 
     [HideInInspector] public string preScene;
     [HideInInspector] public string currentScene;
@@ -35,12 +36,12 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
+        timer = GetComponent<TimerManager>();
     }
 
     private void Start()
     {
         gameStatus.SetActive(false);
-        timer = GetComponent<TimerManager>();
 
         Restart();
 
@@ -83,15 +84,10 @@ public class GameManager : MonoBehaviour
 
         if (!startGame)
         {
-           pooler.SpawnPool();
+            pooler.SpawnPool();
         }
 
-        if (playerManager.loadPlayer)
-        {
-            playerManager.SetPosition(playerManager.startPosition);
-            playerManager.loadPlayer = false;
-        }
-        else
+        if (!playerManager.loadPlayer)
         {
             GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StarPos");
             GameObject startPoint = startPoints.FirstOrDefault(x => x.name.Equals(preScene));
@@ -100,14 +96,23 @@ public class GameManager : MonoBehaviour
             {
                 playerManager.SetPosition(startPoint.transform.position);
             }
+        } else
+        {
+            preScene = currentScene;
+            playerManager.loadPlayer = false;
+            playerManager.SetPosition(playerManager.startPosition);
         }
+
         CameraManager.instance.AddContraintCamera();
     }
 
     private void OnApplicationQuit()
     {
-        timer.SaveTimmer();
-        playerManager.SavePlayer();
+        if (saveGame)
+        {
+            timer.SaveTimmer();
+            playerManager.SavePlayer();
+        }
     }
 
 }
