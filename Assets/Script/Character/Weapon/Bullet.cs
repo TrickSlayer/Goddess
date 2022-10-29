@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -81,6 +80,8 @@ public class Bullet : MonoBehaviour
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(AttackEnemy());
             }
+
+            gameObject.SetActive(false);
         }
 
     }
