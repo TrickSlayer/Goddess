@@ -10,14 +10,13 @@ public class EventSystemManager : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            
+            Destroy(gameObject);
         }
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        DontDestroyOnLoad(this.gameObject);
-
     }
 }

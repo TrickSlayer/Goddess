@@ -92,7 +92,6 @@ public static class SaveSystem
         catch (Exception e)
         {
             Debug.Log(e);
-            Debug.Log("New Game");
         }
         return (0, false);
     }

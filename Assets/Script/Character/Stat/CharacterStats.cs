@@ -24,8 +24,6 @@ public class CharacterStats : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        SetStartHealth();
-        SetStartMana();
     }
 
     // Update is called once per frame

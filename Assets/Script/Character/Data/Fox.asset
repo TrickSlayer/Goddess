@@ -16,7 +16,7 @@ MonoBehaviour:
   Level: 1
   Score: 1
   Experience:
-    BaseValue: 200
+    BaseValue: 100
   Health:
     BaseValue: 100
   Mana:

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -74,13 +73,15 @@ public class Bullet : MonoBehaviour
     {
         if (collision.tag == "Enemy" || collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            StartCoroutine(popDownAnimation());
+            impactEffect = pooler.SpawnFromPool("impactEffect", transform.position, Quaternion.identity);
 
             if (collision.tag == "Enemy")
             {
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.TakeDamage(AttackEnemy());
             }
+
+            gameObject.SetActive(false);
         }
 
     }
@@ -95,19 +96,5 @@ public class Bullet : MonoBehaviour
         }
 
         return damage;
-    }
-
-    IEnumerator popDownAnimation()
-    {
-        rb.velocity /= 1000;
-        impactEffect = pooler.SpawnFromPool("impactEffect", transform.position, Quaternion.identity);
-
-        animator = impactEffect.GetComponent<Animator>();
-
-        float animationLength = animator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSecondsRealtime(animationLength);
-
-        gameObject.SetActive(false);
-        impactEffect.SetActive(false);
     }
 }
