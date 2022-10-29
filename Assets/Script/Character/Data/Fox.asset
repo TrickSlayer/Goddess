@@ -18,16 +18,16 @@ MonoBehaviour:
   Experience:
     BaseValue: 200
   Health:
-    BaseValue: 100
+    BaseValue: 300
   Mana:
-    BaseValue: 100
+    BaseValue: 300
   Defense:
-    BaseValue: 0
+    BaseValue: 5
   Attack:
-    BaseValue: 10000
+    BaseValue: 20
   CritRate:
     BaseValue: 5
   CritDamage:
     BaseValue: 20
   Dodge:
-    BaseValue: 0
+    BaseValue: 5
