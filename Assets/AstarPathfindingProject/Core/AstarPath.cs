@@ -825,6 +825,10 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// See: PathLog
 	/// See: Pathfinding.Path.DebugString
 	/// </summary>
+	/// 
+
+	public bool ShowDebug = false;
+
 	private void LogPathResults (Path path) {
 		if (logPathResults != PathLog.None && (path.error || logPathResults != PathLog.OnlyErrors)) {
 			string debug = (path as IPathInternals).DebugString(logPathResults);
@@ -832,9 +836,11 @@ public class AstarPath : VersionedMonoBehaviour {
 			if (logPathResults == PathLog.InGame) {
 				inGameDebugPath = debug;
 			} else if (path.error) {
-				Debug.LogWarning(debug);
+				if(ShowDebug)
+					Debug.LogWarning(debug);
 			} else {
-				Debug.Log(debug);
+                if (ShowDebug)
+                    Debug.Log(debug);
 			}
 		}
 	}

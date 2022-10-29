@@ -25,13 +25,10 @@ public class GameStatusUI : MonoBehaviour
 
     public void ResetGame()
     {
-        Time.timeScale = 1f;
+        GameManager.instance.saveGame = false;
         SaveSystem.DeletePlayerSave();
         SaveSystem.DeleteTimerSave();
-        GameManager.instance.Restart();
-
-        StartCoroutine(Revival_UI.instance.LoadScreenRevival());
-
-        gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        Application.Quit();
     }
 }

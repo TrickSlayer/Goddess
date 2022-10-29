@@ -81,6 +81,8 @@ MonoBehaviour:
   timeRespawn: 30
   countDown: 0
   Enemy: {fileID: 4128632161032082938}
+  LeftTarget: {fileID: 0}
+  RightTarget: {fileID: 0}
 --- !u!50 &4128632159664151130
 Rigidbody2D:
   serializedVersion: 4
@@ -262,9 +264,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.011010289}
+  m_Offset: {x: -0.011115834, y: 0.011010289}
   serializedVersion: 2
-  m_Radius: 0.119948775
+  m_Radius: 0.13106461
 --- !u!114 &4128632161032082936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5087326bf05b9eb4ab1c3d97c59b0c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
   data: {fileID: 11400000, guid: 441ce4e69fef19849a7892f17f749570, type: 2}
+  currentHealth: 0
   isDie: 0
 --- !u!114 &4128632161032082937
 MonoBehaviour:
@@ -292,4 +296,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  range: 10
+  range: 20

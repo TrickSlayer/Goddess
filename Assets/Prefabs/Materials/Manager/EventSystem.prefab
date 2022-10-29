@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7481092368965982287}
   - component: {fileID: 7481092368965982284}
   - component: {fileID: 7481092368965982285}
-  - component: {fileID: 7653390941822120771}
+  - component: {fileID: 4077661562544317826}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &7653390941822120771
+--- !u!114 &4077661562544317826
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

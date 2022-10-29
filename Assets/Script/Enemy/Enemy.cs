@@ -101,9 +101,9 @@ public class Enemy : MonoBehaviour
 
         StatusAttack.instance.ShowMess("+ " + data.Experience, Color.green);
 
-        GameObject mark = gameObject.transform.Find("Mark(Clone)").gameObject;
+        Transform mark = gameObject.transform.Find("Mark(Clone)");
         
-        if(mark != null) mark.SetActive(false);
+        if(mark != null) mark.gameObject.SetActive(false);
 
         DropItem();
     }

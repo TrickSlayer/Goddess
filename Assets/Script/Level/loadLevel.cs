@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static ObjectPooler;
+
 public class LoadLevel : MonoBehaviour
 {
     public string sLevelToLoad;
@@ -11,7 +13,6 @@ public class LoadLevel : MonoBehaviour
 
         if(collision.gameObject.tag == "Player")
         {
-            GameObject collisionGameObject = collision.gameObject;
             StartCoroutine(LoadScreen(sLevelToLoad));
         }
             
@@ -20,13 +21,13 @@ public class LoadLevel : MonoBehaviour
     public static IEnumerator LoadScreen(string name)
     {
         var asyncLoadLevel = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
-        
+
         while (!asyncLoadLevel.isDone)
         {
             Debug.Log("Loading the Scene");
             yield return null;
         }
-
+        Debug.Log("Loaded the Scene " + name);
     }
 
     public static IEnumerator LoadScreen(int index)
@@ -38,6 +39,6 @@ public class LoadLevel : MonoBehaviour
             Debug.Log("Loading the Scene");
             yield return null;
         }
-
+        Debug.Log("Loaded the Scene");
     }
 }

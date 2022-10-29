@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,17 +12,19 @@ public class GameManager : MonoBehaviour
 
     public PlayerManager playerManager;
     public ObjectPooler pooler;
+    public bool saveGame = true;
 
-    private List<string> SceneHasPool = new List<string>();
     [HideInInspector] public string preScene;
     [HideInInspector] public string currentScene;
     public GameObject dialogBoxUI;
     [HideInInspector] public TimerManager timer;
     public GameObject gameStatus;
 
+    private bool startGame = true;
+
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -33,15 +34,17 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
-            
+
+        timer = GetComponent<TimerManager>();
     }
 
     private void Start()
     {
         gameStatus.SetActive(false);
-        timer = GetComponent<TimerManager>();
 
         Restart();
+
+        startGame = false;
     }
 
     public void Restart()
@@ -60,8 +63,6 @@ public class GameManager : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene().name;
         preScene = currentScene;
-        SceneHasPool.Add(currentScene);
-        pooler = ObjectPooler.instance;
     }
 
     private void Update()
@@ -75,46 +76,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
     private void OnLevelWasLoaded(int level)
     {
         currentScene = SceneManager.GetActiveScene().name;
-        AddListScene(currentScene);
 
-        try
+        if (!startGame)
         {
-            if (GameObject.FindGameObjectWithTag("Mark") == null)
+            pooler.SpawnPool();
+        }
+
+        if (!playerManager.loadPlayer)
+        {
+            GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StarPos");
+            GameObject startPoint = startPoints.FirstOrDefault(x => x.name.Equals(preScene));
+            preScene = currentScene;
+            if (startPoint != null)
             {
-                pooler.SpawnPool();
+                playerManager.SetPosition(startPoint.transform.position);
             }
+        } else
+        {
+            preScene = currentScene;
+            playerManager.loadPlayer = false;
+            playerManager.SetPosition(playerManager.startPosition);
         }
 
-        catch (Exception e)
-        {
-            Debug.LogWarning(e);
-        }
-
-        GameObject[] startPoints = GameObject.FindGameObjectsWithTag("StarPos");
-        GameObject startPoint = startPoints.FirstOrDefault(x => x.name.Equals(preScene));
-        preScene = currentScene;
-        if (startPoint != null)
-        {
-            playerManager.player.transform.position = startPoint.transform.position;
-        }
         CameraManager.instance.AddContraintCamera();
     }
 
     private void OnApplicationQuit()
     {
-        timer.SaveTimmer();
-        playerManager.SavePlayer();
-    }
-
-    private void AddListScene(string current)
-    {
-
-        if (SceneHasPool.Where(x => x.Equals(current)).ToList().Count == 0)
+        if (saveGame)
         {
-            SceneHasPool.Add(current);
+            timer.SaveTimmer();
+            playerManager.SavePlayer();
         }
     }
 

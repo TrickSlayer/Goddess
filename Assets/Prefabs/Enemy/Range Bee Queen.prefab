@@ -311,6 +311,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bee Queen
       objectReference: {fileID: 0}
+    - target: {fileID: 1727346682746791292, guid: 493f2c230952af74199c46b5f83515c2, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1727346682746791292, guid: 493f2c230952af74199c46b5f83515c2, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1647247539
+      objectReference: {fileID: 0}
     - target: {fileID: 7209675949064614117, guid: 493f2c230952af74199c46b5f83515c2, type: 3}
       propertyPath: Points.Array.size
       value: 7

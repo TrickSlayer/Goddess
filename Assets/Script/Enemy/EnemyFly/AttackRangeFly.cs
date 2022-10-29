@@ -2,7 +2,6 @@ using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Search.SearchColumn;
 
 public class AttackRangeFly : EnemyAttackRange
 {
@@ -51,6 +50,7 @@ public class AttackRangeFly : EnemyAttackRange
             else
             {
                 Setter.target = Player.transform;
+                SetterEnemy.targetObject = Player;
             }
         }
     }

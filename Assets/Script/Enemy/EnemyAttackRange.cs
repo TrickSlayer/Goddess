@@ -129,7 +129,7 @@ public class EnemyAttackRange : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.transform.tag == "Camera" && countDown <= 0)
+        if (collision.transform.tag == "MainCamera" && countDown <= 0)
         {
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -148,7 +148,7 @@ public class EnemyAttackRange : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Camera" && countDown <= 0)
+        if (collision.transform.tag == "MainCamera" && countDown <= 0)
         {
             for (int i = 0; i < transform.childCount; i++)
             {

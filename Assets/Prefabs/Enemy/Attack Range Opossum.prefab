@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRespawn: 30
+  countDown: 0
   Enemy: {fileID: 1736465024477400182}
   LeftTarget: {fileID: 1736465024481663834}
   RightTarget: {fileID: 1736465024693840173}
@@ -204,6 +205,7 @@ GameObject:
   - component: {fileID: 1736465024477400184}
   - component: {fileID: 1736465024477400185}
   - component: {fileID: 1736465024477400186}
+  - component: {fileID: 910443123836046833}
   - component: {fileID: 1736465024477400190}
   - component: {fileID: 1736465024477400191}
   - component: {fileID: 1736465024477400129}
@@ -317,6 +319,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   range: 10
+--- !u!58 &910443123836046833
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736465024477400182}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.000000059604645}
+  serializedVersion: 2
+  m_Radius: 0.18
 --- !u!70 &1736465024477400190
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -366,8 +384,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84405bed66198834fb959e895b49acb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 3049ed68e3a7f15498bdf42683a25fa9, type: 2}
   targetObject: {fileID: 0}
+  data: {fileID: 11400000, guid: 3049ed68e3a7f15498bdf42683a25fa9, type: 2}
+  currentHealth: 0
+  isDie: 0
   speed: 3
 --- !u!1 &1736465024481663834
 GameObject:

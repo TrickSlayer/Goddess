@@ -25,12 +25,6 @@ public class UIManager : MonoBehaviour
 
     }
 
-    void Start()
-    {
-        GameObject masterObj = GameObject.FindGameObjectWithTag("Revival");
-        master = masterObj.GetComponent<Master>();
-    }
-
     private void Update()
     {
         if (GameManager.instance.currentScene.Equals("Beach")) {

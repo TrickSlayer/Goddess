@@ -12,6 +12,9 @@ public class Master : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             inRange = true;
+            PlayerManager manager = PlayerManager.instance;
+            manager.statsP.RecoverHealth(manager.statsP.Health.Value);
+            manager.statsP.RecoverMana(manager.statsP.Mana.Value);
         }
     }
 
