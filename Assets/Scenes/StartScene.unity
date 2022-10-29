@@ -10038,8 +10038,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 136657082}
     - target: {fileID: 2252160574556869252, guid: 11d4c2616cef9874183b96e52a3a58ed, type: 3}
+      propertyPath: Mana.BaseValue
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252160574556869252, guid: 11d4c2616cef9874183b96e52a3a58ed, type: 3}
       propertyPath: Attack.BaseValue
-      value: 500
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252160574556869252, guid: 11d4c2616cef9874183b96e52a3a58ed, type: 3}
+      propertyPath: Health.BaseValue
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6707787450378747328, guid: 11d4c2616cef9874183b96e52a3a58ed, type: 3}
       propertyPath: m_Name
