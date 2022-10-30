@@ -28,12 +28,12 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        cam = Camera.GetComponent<Camera>();
+        /*cam = Camera.GetComponent<Camera>();
         camBox = Camera.GetComponent<BoxCollider2D>();
         sizeY = cam.orthographicSize * 2;
         ratio = (float)Screen.width / (float)Screen.height;
         sizeX = sizeY * ratio;
-        camBox.size = new Vector2(sizeX, sizeY);
+        camBox.size = new Vector2(sizeX, sizeY);*/
     }
 
     private void Update()

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 832281237620024860}
   - component: {fileID: 832281237620024863}
   - component: {fileID: 832281237620024862}
-  - component: {fileID: 832281237620024861}
+  - component: {fileID: 3009640786114828690}
   m_Layer: 0
   m_Name: Level Loader
   m_TagString: Untagged
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.87, y: 1.08}
   m_EdgeRadius: 0
---- !u!114 &832281237620024861
+--- !u!114 &3009640786114828690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 832281237620024849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab5d3e80a9f8bc4b9f0927e3690893f, type: 3}
+  m_Script: {fileID: 11500000, guid: f7bbc4e2b747e0146bfe1fcf407b6b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sLevelToLoad: 

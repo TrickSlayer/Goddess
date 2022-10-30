@@ -60,7 +60,7 @@ public class PlayerManager : MonoBehaviour
             newGame = true;
             loadPlayer = false;
 
-            StartCoroutine(LoadLevel.LoadScreen(1));
+            StartCoroutine(LevelLoad.LoadScreen(1));
 
             return;
         }
@@ -86,8 +86,8 @@ public class PlayerManager : MonoBehaviour
         inventoryP.inventory.needFresh = true;
 
         if (data.map != "StartScene")
-            StartCoroutine(LoadLevel.LoadScreen(data.map));
-        else StartCoroutine(LoadLevel.LoadScreen("Beach"));
+            StartCoroutine(LevelLoad.LoadScreen(data.map));
+        else StartCoroutine(LevelLoad.LoadScreen("Beach"));
 
         startPosition.x = data.position[0];
         startPosition.y = data.position[1];
