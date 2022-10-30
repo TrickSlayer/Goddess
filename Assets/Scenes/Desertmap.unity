@@ -5521,6 +5521,10 @@ PrefabInstance:
       propertyPath: sLevelToLoad
       value: Beach
       objectReference: {fileID: 0}
+    - target: {fileID: 3009640786114828690, guid: a30def76c69123643b406bfef29b6986, type: 3}
+      propertyPath: sLevelToLoad
+      value: Beach
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a30def76c69123643b406bfef29b6986, type: 3}
 --- !u!1001 &2014522506
@@ -5579,6 +5583,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 832281237620024861, guid: a30def76c69123643b406bfef29b6986, type: 3}
+      propertyPath: sLevelToLoad
+      value: Forest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3009640786114828690, guid: a30def76c69123643b406bfef29b6986, type: 3}
       propertyPath: sLevelToLoad
       value: Forest
       objectReference: {fileID: 0}

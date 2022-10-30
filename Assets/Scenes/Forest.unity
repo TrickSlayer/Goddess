@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 158875496}
   - component: {fileID: 158875495}
   - component: {fileID: 158875498}
-  - component: {fileID: 158875497}
+  - component: {fileID: 158875499}
   m_Layer: 0
   m_Name: house
   m_TagString: Untagged
@@ -585,19 +585,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &158875497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158875494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab5d3e80a9f8bc4b9f0927e3690893f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sLevelToLoad: Desertmap
 --- !u!61 &158875498
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -624,6 +611,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.93, y: 1.65}
   m_EdgeRadius: 0
+--- !u!114 &158875499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158875494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bbc4e2b747e0146bfe1fcf407b6b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sLevelToLoad: Desertmap
 --- !u!1001 &160887677
 PrefabInstance:
   m_ObjectHideFlags: 0

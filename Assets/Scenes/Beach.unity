@@ -40915,6 +40915,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3009640786114828690, guid: a30def76c69123643b406bfef29b6986, type: 3}
+      propertyPath: sLevelToLoad
+      value: Desertmap
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a30def76c69123643b406bfef29b6986, type: 3}
 --- !u!1001 &5314863379619344791
