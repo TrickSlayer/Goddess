@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
 
     private void DropItem()
     {
-        if (Random.Range(1, 100) <= 50)
+        if (Random.Range(1, 100) <= 100)
         {
             int length = pooler.poolDictionary.Count;
             int id = Random.Range(0, length);

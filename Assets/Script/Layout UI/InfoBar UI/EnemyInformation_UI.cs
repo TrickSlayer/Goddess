@@ -21,12 +21,16 @@ public class EnemyInformation_UI : MonoBehaviour
         GameObject mark = GameObject.FindGameObjectWithTag("Mark");
         if (mark != null)
         {
-            GameObject newSelected = mark.transform.parent.gameObject;
-            if (newSelected.tag.Equals("Enemy"))
+            Transform newSelected = mark.transform.parent;
+            if (newSelected == null)
+            {
+                mark.SetActive(false);
+            }
+            if (newSelected!= null && newSelected.gameObject.tag.Equals("Enemy"))
             {
                 if (Selected == null || Selected.GetInstanceID() != newSelected.GetInstanceID())
                 {
-                    Selected = newSelected;
+                    Selected = newSelected.gameObject;
 
                     Enemy enemy = Selected.GetComponent<EnemyFly>();
                     if (enemy == null)
@@ -42,7 +46,6 @@ public class EnemyInformation_UI : MonoBehaviour
                     Health.text = enemy.currentHealth + "/" + enemy.data.Health.Value;
 
                 }
-
             }
         }
         else

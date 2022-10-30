@@ -25,13 +25,16 @@ public class LazerWeapon : MonoBehaviour
     void Update()
     {
         if (PlayerStats.currentMana > skill1Mana)
+        {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Shot();
                 PlayerStats.UseSkill(skill1Mana);
             }
+        }
 
         if (PlayerStats.currentMana > skill2Mana)
+        {
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 GameObject mark = GameObject.FindGameObjectWithTag("Mark");
@@ -50,12 +53,15 @@ public class LazerWeapon : MonoBehaviour
 
                     Shot(Selected);
                     PlayerStats.UseSkill(skill2Mana);
-                } else
+                }
+                else
                 {
                     Selected = null;
                 }
 
             }
+        }
+
     }
 
     void Shot(GameObject target = null)
