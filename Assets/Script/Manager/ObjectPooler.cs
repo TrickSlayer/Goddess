@@ -61,6 +61,20 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    public List<int> getItemId()
+    {
+        List<int> ids = new List<int>();
+        for (int i = 0; i < pools.Count; i++)
+        {
+            Pool pool = pools[i];
+            if (pool.prefab.tag == "Item")
+            {
+                ids.Add(i);
+            }
+        }
+        return ids;
+    }
+
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))

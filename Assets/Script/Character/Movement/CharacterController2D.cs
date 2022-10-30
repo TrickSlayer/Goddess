@@ -129,14 +129,14 @@ public class CharacterController2D : MonoBehaviour
     {
 
         // If crouching, check to see if the character can stand up
-        if (!crouch && wasCrouching)
+        /*  if (!crouch && wasCrouching)
         {
             // If the character has a ceiling preventing them from standing up, keep them crouching
             if (Physics2D.OverlapCircle(CeilingCheckPoint.position, CeilingRadius, WhatIsGround))
             {
                 crouch = true;
             }
-        }
+        }*/
 
         //only control the player if grounded or airControl is turned on
         if (Grounded || AirControl)

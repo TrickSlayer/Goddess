@@ -9708,6 +9708,7 @@ MonoBehaviour:
   - {fileID: 3436879754583717772}
   - {fileID: 7404089828858166936}
   detailPanel: {fileID: 7914796658719758142}
+  inventoryDetail_UI: {fileID: 4287017184422394180}
 --- !u!1 &9122061020513303756
 GameObject:
   m_ObjectHideFlags: 0

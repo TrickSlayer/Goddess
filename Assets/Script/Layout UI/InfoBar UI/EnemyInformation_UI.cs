@@ -22,10 +22,12 @@ public class EnemyInformation_UI : MonoBehaviour
         if (mark != null)
         {
             Transform newSelected = mark.transform.parent;
-            if (newSelected == null)
+
+            if (newSelected == null || newSelected.gameObject.tag == "Player")
             {
                 mark.SetActive(false);
             }
+
             if (newSelected!= null && newSelected.gameObject.tag.Equals("Enemy"))
             {
                 if (Selected == null || Selected.GetInstanceID() != newSelected.GetInstanceID())

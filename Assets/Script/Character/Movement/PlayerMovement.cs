@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        if (Input.GetButtonDown("Jump") && !controller.Ceiling && !crouch)
+        if (Input.GetButtonDown("Jump") && !crouch)
         {
             jump = true;
             animator.SetBool("isJumping", true);

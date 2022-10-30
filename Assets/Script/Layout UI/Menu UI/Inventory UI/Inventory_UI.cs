@@ -10,7 +10,9 @@ public class Inventory_UI : MonoBehaviour
     public List<Slot_UI> slots = new List<Slot_UI>();
     public GameObject detailPanel;
     [HideInInspector] public static Inventory_UI instance;
+    [HideInInspector] PlayerInventory inventoryP;
     [HideInInspector] Inventory inventory;
+    public InventoryDetail_UI inventoryDetail_UI;
 
     private void Awake()
     {
@@ -25,22 +27,24 @@ public class Inventory_UI : MonoBehaviour
         detailPanel.SetActive(false);
     }
 
-    private void Start()
-    {
-        inventory = PlayerManager.instance.inventoryP.inventory;
-    }
-
     // Update is called once per frame
     void Update()
     {
+
+        if (inventoryP == null)
+        {
+            inventoryP = PlayerInventory.instance;
+            inventory = inventoryP.inventory;
+        }
+
         if (inventory.needFresh)
         {
             Refresh();
 
-            if (inventory.newSlot == InventoryDetail_UI.instance.inventorySlot)
+            if (inventory.newSlot == inventoryDetail_UI.inventorySlot)
             {
                 inventory.newSlot = null;
-                RefreshDetail(inventory.slots[InventoryDetail_UI.instance.slotId]);
+                RefreshDetail(inventory.slots[inventoryDetail_UI.slotId]);
             }
         }
     }
@@ -68,7 +72,7 @@ public class Inventory_UI : MonoBehaviour
     {
         if (detailPanel.activeSelf)
         {
-            InventoryDetail_UI.instance.SetItem(slot);
+            inventoryDetail_UI.SetItem(slot);
         }
     }
 
@@ -88,12 +92,12 @@ public class Inventory_UI : MonoBehaviour
 
         if (itemToDrop != null)
         {
-            PlayerInventory.instance.DropItem(itemToDrop);
+            inventoryP.DropItem(itemToDrop);
             inventory.Remove(slotId);
             Refresh();
             if (slots[slotId].quantityText.text == "")
             {
-                InventoryDetail_UI.instance.inventorySlot = null;
+                inventoryDetail_UI.inventorySlot = null;
                 detailPanel.SetActive(false);
             }
             RefreshDetail(inventory.slots[slotId]);
@@ -110,11 +114,11 @@ public class Inventory_UI : MonoBehaviour
             int quantity = Int32.Parse(slots[slotId].quantityText.text);
             while (quantity-- > 0)
             {
-                PlayerInventory.instance.DropItem(itemToDrop);
+                inventoryP.DropItem(itemToDrop);
                 inventory.Remove(slotId);
             }
             Refresh();
-            InventoryDetail_UI.instance.inventorySlot = null;
+            inventoryDetail_UI.inventorySlot = null;
             detailPanel.SetActive(false);
             RefreshDetail(inventory.slots[slotId]);
         }
@@ -125,22 +129,22 @@ public class Inventory_UI : MonoBehaviour
     {
         Inventory.Slot slot = inventory.slots[slotId];
 
-        if (slot == InventoryDetail_UI.instance.inventorySlot)
+        if (slot == inventoryDetail_UI.inventorySlot)
         {
-            InventoryDetail_UI.instance.inventorySlot = null;
+            inventoryDetail_UI.inventorySlot = null;
         }
         else
         {
-            InventoryDetail_UI.instance.inventorySlot = slot;
+            inventoryDetail_UI.inventorySlot = slot;
         }
 
-        if (InventoryDetail_UI.instance.inventorySlot == null)
+        if (inventoryDetail_UI.inventorySlot == null)
         {
             detailPanel.SetActive(false);
             return;
         }
 
-        if (InventoryDetail_UI.instance.SetItem(slot))
+        if (inventoryDetail_UI.SetItem(slot))
         {
             detailPanel.SetActive(true);
         }
@@ -157,7 +161,7 @@ public class Inventory_UI : MonoBehaviour
             Refresh();
             if (slots[slotId].quantityText.text == "")
             {
-                InventoryDetail_UI.instance.inventorySlot = null;
+                inventoryDetail_UI.inventorySlot = null;
                 detailPanel.SetActive(false);
             }
             RefreshDetail(inventory.slots[slotId]);

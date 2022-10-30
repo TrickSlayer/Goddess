@@ -22,12 +22,7 @@ public class Selectable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        float dist = Vector3.Distance(Player.transform.position, transform.position);
-
-        if (dist < range)
-        {
-            Selected();
-        }
+        Choose();
     }
 
     public void Choose()

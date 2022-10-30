@@ -112,11 +112,10 @@ public class Enemy : MonoBehaviour
     {
         if (Random.Range(1, 100) <= 100)
         {
-            int length = pooler.poolDictionary.Count;
-            int id = Random.Range(0, length);
-
-            String key = pooler.poolDictionary.ElementAt(id).Key;
-
+            List<int> idItems = pooler.getItemId();
+            int id = Random.Range(0, idItems.Count);
+            String key = pooler.poolDictionary.ElementAt(idItems[id]).Key;
+            Debug.Log("Drop " + key);
             GameObject drop = pooler.SpawnFromPool(key, transform.position, Quaternion.identity);
         }
     }

@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         currentScene = SceneManager.GetActiveScene().name;
 
-        if (!startGame)
+        if (!startGame && GameObject.FindGameObjectsWithTag("Mark").Count() == 0)
         {
             pooler.SpawnPool();
         }
